@@ -1,6 +1,6 @@
 <?php 
-//require 'getQuestions.php';
-session_start();
+require 'getQuestions.php';
+//session_start();
 if (isset($_SESSION['user']))
 {
 ?>
@@ -8,7 +8,7 @@ if (isset($_SESSION['user']))
 		<html>
 		<head>
 			<link rel="shortcut icon" href="img/favicon.ico">
-			<title>Cerebra K'17</title>
+			<title>Sherlock K'17</title>
 			<!--Import Google Icon Font-->
 			<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 			<!--Import materialize.css-->
@@ -112,19 +112,32 @@ if (isset($_SESSION['user']))
 
 
 								<div class="current-user">
-									<h4 class="left-align col s12 m6">Hey Role(Name)</h4>
+								<?php 
+								$role='';
+								if($_SESSION['user_state']['currentUserRole']==1)
+									$role = 'Sherlock';
+								else
+									$role = 'Watson';
+								?>
+									<h4 class="left-align col s12 m6">Hey <?php echo $role ?> (<?php echo $_SESSION['user_state']['currentUserName']; ?>)</h4>
 
 									<h4 class="left-align col s12 m6">Level number</h4>
 									<div class="images">
 										<div class="carousel carousel-slider" data-indicators="true">
-											<a class="carousel-item" href="#two!"><img src="https://cdn.pbrd.co/images/nvVunFCnC.jpg"></a>
-											<a class="carousel-item" href="#three!"><img src="http://www.nhsborders.scot.nhs.uk/CropUp/desktop/media/16268/small-preview-1.jpg"></a>
-											<a class="carousel-item" href="#four!"><img src="http://www.nhsborders.scot.nhs.uk/CropUp/desktop/media/16268/small-preview-1.jpg"></a>
+											<?php 
+											$j = 0; $count =  0;
+											for($i=0;$i<sizeof($_SESSION['user_state']['currentUserUrls']) ; $i++) { ?>	
+
+											<a class="carousel-item" href="#two!"><img src="<?php echo $_SESSION['user_state']['currentUserUrls'][$i] ?> "></a>
+											<?php
+											}
+											?>											
 										</div>
 									</div>
 									<div class="answer form">
-										<form class="col s12">
-											<div class="row">
+									<div class="row">
+										<form>
+											
 												<div class="input-field col s12 m8">
 													<i class="material-icons prefix">lightbulb_outline</i>
 													<input id="answer" name="answer" placeholder="answer" type="text" class="validate">
@@ -135,17 +148,19 @@ if (isset($_SESSION['user']))
 														<i class="material-icons">done</i>
 													</button>
 												</div>
-												<div class="input-field col s6 m2">
-
-													<button class="btn btn-floating waves-effect waves-light" name="clue">
-														<i class="material-icons">more_vert</i>
-													</button>
-												</div>
 												<div class="progress_loader" id="answer_loader" style="display:none;"></div>
-
-
-											</div>
+											
 										</form>
+										<div class="input-field col s6 m2">
+
+											<button id="howtoplay" class="btn btn-floating waves-effect waves-light" name="clue">
+												<i class="material-icons">more_vert</i>
+											</button>
+										</div>
+										</div>
+										<div id="playdesc" style="display: none;">
+											<p><?php echo $_SESSION['user_state']['currentUserHint']; ?></p>
+												</div>
 									</div>
 								</div>
 								<div class="teammate" style="padding-top: 200px">
@@ -186,6 +201,12 @@ if (isset($_SESSION['user']))
 			$('.carousel.carousel-slider').carousel({full_width: true});
 			$('.carousel.carousel-slider').css('height','50vw');
 		});
+	</script>
+	<script type="text/javascript">
+		$( "#howtoplay" ).click(function() {
+			$('#playdesc').toggle();
+			preventDefault();
+});
 	</script>
 
 

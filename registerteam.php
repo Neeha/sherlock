@@ -62,7 +62,7 @@ function sanitizeParams($param)
 	else
 	{
 		//$_SESSION['login'] = "failure";
-			header("Location: index.php");
+			//header("Location: index.php");
 	}
 }
 

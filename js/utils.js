@@ -64,7 +64,7 @@ $("#createteam_form").submit(function(e) {
                 {
                    $.ajax
                    ({ 
-                    url: 'checkKRegistration.php',
+                    url: 'registerteam.php',
                     data: $("#createteam_form").serialize(),
                     type: 'post',
                     dataType: "json",            
@@ -73,7 +73,7 @@ $("#createteam_form").submit(function(e) {
                         if(result == 1)
                         {
                             Materialize.toast('Login Successful 😁', 1000);
-                            window.location="GamePlay.php";
+                            window.location="loginuser.php";
                         }
                         else if(result == 2)
                         {
@@ -133,7 +133,20 @@ $("#jointeam_form").submit(function(e) {
     alert(flag);
     if(flag)
     {
+
+
+
         $.ajax
+        ({ 
+            url: 'checkKRegistration.php',
+            data: $("#jointeam_form").serialize(),
+            type: 'post',
+            dataType: "json",            
+            success: function(result)
+            {
+                if(result == 1)
+                {
+                   $.ajax
         ({ 
             url: 'jointeam.php',
             data: $("#jointeam_form").serialize(),
@@ -148,7 +161,7 @@ $("#jointeam_form").submit(function(e) {
                 }
                 else if(result == 2)
                 {
-                    Materialize.toast('Login Failed 😯', 1000);
+                    Materialize.toast('Email id already registered for event 😯', 1000);
                 }
                 else if(result == 3)
                 {
@@ -169,6 +182,25 @@ $("#jointeam_form").submit(function(e) {
                 $('.join_submit').show(); 
             }
         });
+               }
+               else if(result == 0)
+               {
+                Materialize.toast('You have not registered for k!', 1000);
+
+            }
+
+
+            $('.progress_loader').hide();
+            $('.create_submit').show();
+
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) { 
+            Materialize.toast('Some error occured. Please try after sometime 🙏', 1000);
+            $('.progress_loader').hide();
+            $('.create_submit').show(); 
+        }
+    });
+
 
     }
     else

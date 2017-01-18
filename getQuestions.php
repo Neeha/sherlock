@@ -4,7 +4,7 @@ if(isset($_SESSION['user']))
 {
 	$access_token = $_SESSION['user']['access_token'];
 	
-	$url = 'cms.cegtechforum.com/api/getQuestions';
+	$url = '192.168.0.148:8080/player/api/questions';
 	$params =  json_encode(array(
 		"access_token" => $access_token
 		));
@@ -20,12 +20,8 @@ if(isset($_SESSION['user']))
 	if (curl_getinfo($ch, CURLINFO_HTTP_CODE) == 200)
 	{
 		$response = json_decode($response, true);
-		$_SESSION['questions'] = $response['data'];
-		$_SESSION['current_time'] = $response['current_time'];
-		$_SESSION['questions_answered'] = $response['questions_answered'];
-		$_SESSION['user']['state'] = $response['state'];
-		$_SESSION['user']['startTime'] = $response['startTime'];
-		$_SESSION['user']['points'] = $response['points'];
+		$_SESSION['user_state'] = $response['currentUser'];
+		
 
 	}	
 }
