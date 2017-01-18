@@ -59,7 +59,7 @@ $("#login_form").submit(function(e) {
 $("#createteam_form").submit(function(e) { 
     $('.progress_loader').show();
     $('.create_submit').hide();
-    var flag = returnCheckForLogin();
+    var flag = returnCheckRegister();
     if(flag)
     {
         $.ajax
@@ -77,18 +77,13 @@ $("#createteam_form").submit(function(e) {
                 }
                 else if(result == 2)
                 {
-                    Materialize.toast('team Name already registered 😯 ', 1000);
-                    window.location="GamePlay.php";
+                    Materialize.toast('Team Name already registered 😯 ', 1000);
+                    Materialize.toast('Try with another name', 1000);
                 }
                 else if(result == 3)
                 {
-                    Materialize.toast('Login Successful 😁', 1000);
-                    window.location="Summary.php";
-                }
-                else
-                {
                     Materialize.toast('Login Failed 😯', 1000);
-                    Materialize.toast('Try resetting your password 😯', 1000);
+                    Materialize.toast('Give valid Credentials 😁', 1000);
                 }
                 
                 $('.progress_loader').hide();

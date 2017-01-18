@@ -7,11 +7,16 @@ if(!isset($_SESSION['user']))
 	$password = sanitizeParams($_POST['password']);
 	$teamName = sanitizeParams($_POST['teamname']);
 	$teamPassword = sanitizeParams($_POST['teampassword']);
+	$role = sanitizeParams($_POST['role']);
 
 	$url = '192.168.0.148:8080/web/api/register/team';
 	$params =  json_encode(array(
 		"emailId" => $emailId, 
-		"password" => $password
+		"password" => $password,
+		"userName" => $userName,
+		"teamName" => $teamName,
+		"teamPassword" => $teamPassword,
+		"role" => $role
 		));
 	$ch = curl_init( $url );
 	curl_setopt( $ch, CURLOPT_POST, 1);
@@ -29,11 +34,14 @@ if(!isset($_SESSION['user']))
 		echo 1;
 
 	}
-	else if (curl_getinfo($ch, CURLINFO_HTTP_CODE) == 200)
+	else if (curl_getinfo($ch, CURLINFO_HTTP_CODE) == 402)
 	{
 		echo 2;
 	}
-	
+	else if (curl_getinfo($ch, CURLINFO_HTTP_CODE) == 403)
+	{
+		echo 3;
+	}
 	//header("Location: index.php");
 	
 	

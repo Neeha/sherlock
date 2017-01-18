@@ -1,9 +1,4 @@
-<?php 
-session_start();
-if (!isset($_SESSION['user']))
-{
-  ?>
-  <!DOCTYPE html>
+<!DOCTYPE html>
   <html>
   <head>
     <link rel="shortcut icon" href="img/favicon.ico">
@@ -46,7 +41,7 @@ if (!isset($_SESSION['user']))
 
         <ul class="tabs" >
           <li class="tab col s12 l6"><a class="active" href="#createteam" style="font-size:18px">Create Team</a></li>
-          <li class="tab col s12 l6"><a href="#jointeam" style="font-size:18px" onclick="getLeaderboard();">Join Team</a></li>
+          <li class="tab col s12 l6"><a href="#jointeam" style="font-size:18px" >Join Team</a></li>
 
         </ul>  
 
@@ -84,9 +79,9 @@ if (!isset($_SESSION['user']))
                 </div>
                 <div class="input-field col s12">
                   <label for="sherlock">Choose your role:</label><br/><br/>
-                  <input name="group1" value="1" type="radio" id="sherlock" checked />
+                  <input name="role" value="1" type="radio" id="1" checked />
                   <label for="sherlock">Sherlock</label>
-                  <input name="group1" value="0" type="radio" id="watson" />
+                  <input name="role" value="0" type="radio" id="0" />
                   <label for="watson">Watson</label>
                 </div>                
               </div>
@@ -156,25 +151,3 @@ if (!isset($_SESSION['user']))
 <script type="text/javascript" src="js/register.js"></script>
 </body>
 </html>
-<?php
-}
-else
-{
-  switch ($_SESSION['user']['state']) {
-    case 0:
-      # go to practice page
-    header("Location: practice.php");
-    break;
-
-    case 5:
-      # go to summary page
-    header("Location: Summary.php");
-    break;
-    
-    default:
-      # go to game play
-    header("Location: GamePlay.php");
-    break;
-  }
-}
-?>
