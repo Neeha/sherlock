@@ -104,6 +104,16 @@ if (!isset($_SESSION['user']))
 							</ul>
 
 							<div id="game" class="col s12" align="center" style="padding-top: 40px">
+
+								<ul class="pagination">
+									<li class="active"><a href="#!">1</a></li>
+									<li class="waves-effect"><a href="#!">2</a></li>
+									<li class="waves-effect"><a href="#!">3</a></li>
+									<li class="waves-effect"><a href="#!">4</a></li>
+									<li class="waves-effect"><a href="#!">5</a></li>
+								</ul>
+
+
 								<div class="current-user">
 									<h4 class="left-align">Current Role</h4>
 									<div class="images">

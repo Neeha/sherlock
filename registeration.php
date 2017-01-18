@@ -46,12 +46,12 @@ if (!isset($_SESSION['user']))
 
         <ul class="tabs" >
           <li class="tab col s12 l6"><a class="active" href="#createteam" style="font-size:18px">Create Team</a></li>
-          <li class="tab col s12 l6"><a href="#jointeam" style="font-size:18px" onclick="getLeaderboard();">Join Team</a></li>
+          <li class="tab col s12 l6"><a href="#jointeam" style="font-size:18px">Join Team</a></li>
 
         </ul>  
 
-      <!-- create team -->
-       <div id="createteam" class="col s12 m6 push-m3 l6 push-l3">
+        <!-- create team -->
+        <div id="createteam" class="col s12 m6 push-m3 l6 push-l3" style="padding-top: 20px;">
          <div class="card grey lighten-4">
           <div class="card-content">
             <center><span class="card-title grey-text text-darken-3"><b>Create Team</b></span></center>
@@ -99,56 +99,56 @@ if (!isset($_SESSION['user']))
               </center>            
             </form>
 
-         </div>         
-       </div>
-     </div>
+          </div>         
+        </div>
+      </div>
 
-     <!-- Join team -->
-       <div id="jointeam" class="col s12 m6 push-m3 l6 push-l3">
-         <div class="card grey lighten-4">
-          <div class="card-content">
-            <center><span class="card-title grey-text text-darken-3"><b>Join Team</b></span></center>
-            <form id="jointeam_form" >
-              <div class="row">
-                <div class="input-field col s12">
-                  <i class="material-icons prefix">person outline</i>
-                  <input id="icon_prefix name" type="text" class="validate" name="name" onblur="validatename(this)" required>
-                  <label for="icon_prefix">Name</label>
-                </div>
-                <div class="input-field col s12">
-                  <i class="material-icons prefix">email</i>
-                  <input id="icon_prefix email" type="text" class="validate" name="email" onblur="validatemail(this)" required>
-                  <label for="icon_prefix">Email</label>
-                </div>
-                <div class="input-field col s12">
-                  <i class="material-icons prefix">vpn_key</i>
-                  <input id="icon_telephone password" type="password" class="validate" name="password" onblur="validatepass(this)" required>
-                  <label for="icon_telephone">Password</label>
-                </div>
-                <div class="input-field col s12">
-                  <i class="material-icons prefix">group</i>
-                  <input id="icon_prefix team" type="text" class="validate" name="team" required>
-                  <label for="icon_prefix">Team Name</label>
-                </div>
-                <div class="input-field col s12">
-                  <i class="material-icons prefix">vpn_key</i>
-                  <input id="icon_telephone password" type="password" class="validate" name="teampassword" onblur="validatepass(this)" required>
-                  <label for="icon_telephone">Team Password</label>
-                </div>
+      <!-- Join team -->
+      <div id="jointeam" class="col s12 m6 push-m3 l6 push-l3" style="padding-top: 20px;">
+       <div class="card grey lighten-4">
+        <div class="card-content">
+          <center><span class="card-title grey-text text-darken-3"><b>Join Team</b></span></center>
+          <form id="jointeam_form" >
+            <div class="row">
+              <div class="input-field col s12">
+                <i class="material-icons prefix">person outline</i>
+                <input id="icon_prefix name" type="text" class="validate" name="name" onblur="validatename(this)" required>
+                <label for="icon_prefix">Name</label>
               </div>
-              <div class="progress_loader" style="display:none;"></div>
-              <center>
-                <button class="btn waves-effect waves-light join_submit" type="submit" name="action" style="margin-bottom: 10px;">
-                  JOIN
-                </button>
-              </center>            
-            </form>            
-         </div>         
-       </div>
-     </div>
+              <div class="input-field col s12">
+                <i class="material-icons prefix">email</i>
+                <input id="icon_prefix email" type="text" class="validate" name="email" onblur="validatemail(this)" required>
+                <label for="icon_prefix">Email</label>
+              </div>
+              <div class="input-field col s12">
+                <i class="material-icons prefix">vpn_key</i>
+                <input id="icon_telephone password" type="password" class="validate" name="password" onblur="validatepass(this)" required>
+                <label for="icon_telephone">Password</label>
+              </div>
+              <div class="input-field col s12">
+                <i class="material-icons prefix">group</i>
+                <input id="icon_prefix team" type="text" class="validate" name="team" required>
+                <label for="icon_prefix">Team Name</label>
+              </div>
+              <div class="input-field col s12">
+                <i class="material-icons prefix">vpn_key</i>
+                <input id="icon_telephone password" type="password" class="validate" name="teampassword" onblur="validatepass(this)" required>
+                <label for="icon_telephone">Team Password</label>
+              </div>
+            </div>
+            <div class="progress_loader" style="display:none;"></div>
+            <center>
+              <button class="btn waves-effect waves-light join_submit" type="submit" name="action" style="margin-bottom: 10px;">
+                JOIN
+              </button>
+            </center>            
+          </form>            
+        </div>         
+      </div>
+    </div>
 
-   </div>
- </div>
+  </div>
+</div>
 </div>
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
