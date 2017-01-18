@@ -64,6 +64,7 @@ $("#createteam_form").submit(function(e) {
     {
         $.ajax
         ({ 
+            url: 'registerteam.php',
             data: $("#createteam_form").serialize(),
             type: 'post',
             dataType: "json",
@@ -72,9 +73,11 @@ $("#createteam_form").submit(function(e) {
                 if(result == 1)
                 {
                     Materialize.toast('Login Successful 😁', 1000);
+                    window.location="GamePlay.php";
                 }
                 else if(result == 2)
                 {
+                    Materialize.toast('team Name already registered 😯 ', 1000);
                     window.location="GamePlay.php";
                 }
                 else if(result == 3)

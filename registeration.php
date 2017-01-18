@@ -84,7 +84,9 @@ if (!isset($_SESSION['user']))
                 </div>
                 <div class="input-field col s12">
                   <label for="sherlock">Choose your role:</label><br/><br/>
+                  <input name="group1" value="1" type="radio" id="sherlock" checked />
                   <label for="sherlock">Sherlock</label>
+                  <input name="group1" value="0" type="radio" id="watson" />
                   <label for="watson">Watson</label>
                 </div>                
               </div>
