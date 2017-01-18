@@ -69,7 +69,7 @@ if (!isset($_SESSION['user']))
             </form>
             <center>
              <a href="registeration.php" class="waves-effect waves-light btn" style="margin-bottom: 10px;">Register</a><br/>
-             <a href="http://lite.kurukshetra.org.in/#resetpassword" target="_blank" style="margin-bottom: 10px; color:#00796b">Forgot password? Click here to reset</a>
+             <a href="http://lite.kurukshetra.org.in/#forgotpassword" target="_blank" style="margin-bottom: 10px; color:#00796b">Forgot password? Click here to reset</a>
            </center>
 
          </div>         

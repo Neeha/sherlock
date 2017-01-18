@@ -55,6 +55,117 @@ $("#login_form").submit(function(e) {
     e.preventDefault();
 });
 
+// registeration - create team
+$("#createteam_form").submit(function(e) { 
+    $('.progress_loader').show();
+    $('.create_submit').hide();
+    var flag = returnCheckForLogin();
+    if(flag)
+    {
+        $.ajax
+        ({ 
+            data: $("#createteam_form").serialize(),
+            type: 'post',
+            dataType: "json",
+            success: function(result)
+            {
+                if(result == 1)
+                {
+                    Materialize.toast('Login Successful 😁', 1000);
+                }
+                else if(result == 2)
+                {
+                    window.location="GamePlay.php";
+                }
+                else if(result == 3)
+                {
+                    Materialize.toast('Login Successful 😁', 1000);
+                    window.location="Summary.php";
+                }
+                else
+                {
+                    Materialize.toast('Login Failed 😯', 1000);
+                    Materialize.toast('Try resetting your password 😯', 1000);
+                }
+                
+                $('.progress_loader').hide();
+                $('.create_submit').show();
+                
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) { 
+                Materialize.toast('Some error occured. Please try after sometime 🙏', 1000);
+                $('.progress_loader').hide();
+                $('.create_submit').show(); 
+            }
+        });
+
+    }
+    else
+    {
+        Materialize.toast('Enter Valid Credentials 😕', 1000);
+        $('.progress_loader').hide();
+        $('.create_submit').show(); 
+    }
+    e.preventDefault();
+});
+
+// registeration - join team
+$("#jointeam_form").submit(function(e) { 
+    $('.progress_loader').show();
+    $('.join_submit').hide();
+    var flag = returnCheckForLogin();
+    if(flag)
+    {
+        $.ajax
+        ({ 
+            url: 'login.php',
+            data: $("#jointeam_form").serialize(),
+            type: 'post',
+            dataType: "json",
+            success: function(result)
+            {
+                if(result == 1)
+                {
+                    Materialize.toast('Login Successful 😁', 1000);
+                    window.location="practice.php";
+                }
+                else if(result == 2)
+                {
+                    Materialize.toast('Login Successful 😁 ', 1000);
+                    window.location="GamePlay.php";
+                }
+                else if(result == 3)
+                {
+                    Materialize.toast('Login Successful 😁', 1000);
+                    window.location="Summary.php";
+                }
+                else
+                {
+                    Materialize.toast('Login Failed 😯', 1000);
+                    Materialize.toast('Try resetting your password 😯', 1000);
+                }
+                
+                $('.progress_loader').hide();
+                $('.join_submit').show();
+                
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) { 
+                Materialize.toast('Some error occured. Please try after sometime 🙏', 1000);
+                $('.progress_loader').hide();
+                $('.join_submit').show(); 
+            }
+        });
+
+    }
+    else
+    {
+        Materialize.toast('Enter Valid Credentials 😕', 1000);
+        $('.progress_loader').hide();
+        $('.join_submit').show(); 
+    }
+    e.preventDefault();
+});
+
 // practice round - validation answers
 function submitAnswer(e) { 
     $(e).hide();

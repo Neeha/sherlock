@@ -55,10 +55,10 @@ if (!isset($_SESSION['user']))
          <div class="card grey lighten-4">
           <div class="card-content">
             <center><span class="card-title grey-text text-darken-3"><b>Create Team</b></span></center>
-            <form id="login_form" >
+            <form id="createteam_form" >
               <div class="row">
                 <div class="input-field col s12">
-                  <i class="material-icons prefix">supervisor_account</i>
+                  <i class="material-icons prefix">person outline</i>
                   <input id="icon_prefix name" type="text" class="validate" name="name" onblur="validatename(this)" required>
                   <label for="icon_prefix">Name</label>
                 </div>
@@ -73,30 +73,29 @@ if (!isset($_SESSION['user']))
                   <label for="icon_telephone">Password</label>
                 </div>
                 <div class="input-field col s12">
-                  <i class="material-icons prefix">supervisor_account</i>
-                  <input id="icon_telephone teamname" type="text" class="validate" name="teamname" required>
+                  <i class="material-icons prefix">group</i>
+                  <input id="icon_telephone teamname" type="text" class="validate" name="teamname" onblur="validatename(this)" required>
                   <label for="icon_telephone">Team Name</label>
                 </div>
                 <div class="input-field col s12">
-                  <select class="browser-default">
-                    <option value="" disabled selected>Choose your role</option>
-                    <option value="Sherlock">Sherlock</option>
-                    <option value="Watson">Watson</option>
-                  </select>
+                  <i class="material-icons prefix">vpn_key</i>
+                  <input id="icon_telephone password" type="password" class="validate" name="teampassword" onblur="validatepass(this)" required>
+                  <label for="icon_telephone">Team Password</label>
                 </div>
+                <div class="input-field col s12">
+                  <label for="sherlock">Choose your role:</label><br/><br/>
+                  <label for="sherlock">Sherlock</label>
+                  <label for="watson">Watson</label>
+                </div>                
               </div>
               <br/>
               <div class="progress_loader" style="display:none;"></div>
               <center>
-                <button class="btn waves-effect waves-light login_submit" type="submit" name="action" style="margin-bottom: 10px;">
-                  Login
+                <button class="btn waves-effect waves-light create_submit" type="submit" name="action" style="margin-bottom: 10px;">
+                  CREATE
                 </button>
               </center>            
             </form>
-            <center>
-             <a href="http://kurukshetra.org.in/#/register" class="waves-effect waves-light btn" style="margin-bottom: 10px;">Register</a><br/>
-             <a href="http://lite.kurukshetra.org.in/#resetpassword" target="_blank" style="margin-bottom: 10px; color:#00796b">Forgot password? Click here to reset</a>
-           </center>
 
          </div>         
        </div>
@@ -107,12 +106,12 @@ if (!isset($_SESSION['user']))
          <div class="card grey lighten-4">
           <div class="card-content">
             <center><span class="card-title grey-text text-darken-3"><b>Join Team</b></span></center>
-            <form id="login_form" >
+            <form id="jointeam_form" >
               <div class="row">
                 <div class="input-field col s12">
-                  <i class="material-icons prefix">email</i>
-                  <input id="icon_prefix team" type="text" class="validate" name="team" required>
-                  <label for="icon_prefix">Team</label>
+                  <i class="material-icons prefix">person outline</i>
+                  <input id="icon_prefix name" type="text" class="validate" name="name" onblur="validatename(this)" required>
+                  <label for="icon_prefix">Name</label>
                 </div>
                 <div class="input-field col s12">
                   <i class="material-icons prefix">email</i>
@@ -124,20 +123,24 @@ if (!isset($_SESSION['user']))
                   <input id="icon_telephone password" type="password" class="validate" name="password" onblur="validatepass(this)" required>
                   <label for="icon_telephone">Password</label>
                 </div>
-
+                <div class="input-field col s12">
+                  <i class="material-icons prefix">group</i>
+                  <input id="icon_prefix team" type="text" class="validate" name="team" required>
+                  <label for="icon_prefix">Team Name</label>
+                </div>
+                <div class="input-field col s12">
+                  <i class="material-icons prefix">vpn_key</i>
+                  <input id="icon_telephone password" type="password" class="validate" name="teampassword" onblur="validatepass(this)" required>
+                  <label for="icon_telephone">Team Password</label>
+                </div>
               </div>
               <div class="progress_loader" style="display:none;"></div>
               <center>
-                <button class="btn waves-effect waves-light login_submit" type="submit" name="action" style="margin-bottom: 10px;">
-                  Login
+                <button class="btn waves-effect waves-light join_submit" type="submit" name="action" style="margin-bottom: 10px;">
+                  JOIN
                 </button>
               </center>            
-            </form>
-            <center>
-             <a href="http://kurukshetra.org.in/#/register" class="waves-effect waves-light btn" style="margin-bottom: 10px;">Register</a><br/>
-             <a href="http://lite.kurukshetra.org.in/#resetpassword" target="_blank" style="margin-bottom: 10px; color:#00796b">Forgot password? Click here to reset</a>
-           </center>
-
+            </form>            
          </div>         
        </div>
      </div>
