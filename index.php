@@ -1,9 +1,4 @@
-<?php 
-session_start();
-if (!isset($_SESSION['user']))
-{
-  ?>
-  <!DOCTYPE html>
+<!DOCTYPE html>
   <html>
   <head>
     <link rel="shortcut icon" href="img/favicon.ico">
@@ -43,12 +38,25 @@ if (!isset($_SESSION['user']))
   <div class="container" style="margin-top: 5vh; margin-bottom: 10vh; min-width: 200px">
     <div class="section">
       <div class="row">
-       <div class="col s12 m6 push-m3 l6 push-l3">
+
+        <ul class="tabs" >
+          <li class="tab col s12 l6"><a class="active" href="#createteam" style="font-size:18px">Create Team</a></li>
+          <li class="tab col s12 l6"><a href="#jointeam" style="font-size:18px">Join Team</a></li>
+
+        </ul>  
+
+        <!-- create team -->
+        <div id="createteam" class="col s12 m6 push-m3 l6 push-l3" style="padding-top: 20px;">
          <div class="card grey lighten-4">
           <div class="card-content">
-            <center><span class="card-title grey-text text-darken-3"><b>Login</b></span></center>
-            <form id="login_form" >
+            <center><span class="card-title grey-text text-darken-3"><b>Create Team</b></span></center>
+            <form id="createteam_form" method="post" >
               <div class="row">
+                <div class="input-field col s12">
+                  <i class="material-icons prefix">person outline</i>
+                  <input id="icon_prefix name" type="text" class="validate" name="name" onblur="validatename(this)" required>
+                  <label for="icon_prefix">Name</label>
+                </div>
                 <div class="input-field col s12">
                   <i class="material-icons prefix">email</i>
                   <input id="icon_prefix email" type="text" class="validate" name="email" onblur="validatemail(this)" required>
@@ -57,26 +65,95 @@ if (!isset($_SESSION['user']))
                 <div class="input-field col s12">
                   <i class="material-icons prefix">vpn_key</i>
                   <input id="icon_telephone password" type="password" class="validate" name="password" onblur="validatepass(this)" required>
-                  <label for="icon_telephone">Password</label>
+                  <label for="icon_telephone">Password (min 8 characters)</label>
+                </div>
+                <div class="input-field col s12">
+                  <i class="material-icons prefix">group</i>
+                  <input id="icon_telephone teamname" type="text" class="validate" name="teamname" required>
+                  <label for="icon_telephone">Team Name</label>
+                </div>
+                <div class="input-field col s12">
+                  <i class="material-icons prefix">vpn_key</i>
+                  <input id="icon_telephone password" type="password" class="validate" name="teampassword" onblur="validatepass(this)" required>
+                  <label for="icon_telephone">Team Password (min 8 characters)</label>
+                </div>
+                <div class="input-field col s12">
+                  <label>Choose your role:</label><br/><br/>
+                  <input name="role" value="1" type="radio" id="sherlock" checked />
+                  <label for="sherlock">Sherlock</label>
+                  <input name="role" value="0" type="radio" id="watson" />
+                  <label for="watson">Watson</label>
                 </div>                
               </div>
+              <br/>
               <div class="progress_loader" style="display:none;"></div>
               <center>
-                <button class="btn waves-effect waves-light login_submit" type="submit" name="action" style="margin-bottom: 10px;">
-                  Login
+                <button class="btn waves-effect waves-light create_submit" type="submit" name="action" style="margin-bottom: 10px;">
+                  CREATE
                 </button>
               </center>            
             </form>
-            <center>
-             <a href="registeration.php" class="waves-effect waves-light btn" style="margin-bottom: 10px;">Register</a><br/>
-             <a href="http://lite.kurukshetra.org.in/#forgotpassword" target="_blank" style="margin-bottom: 10px; color:#00796b">Forgot password? Click here to reset</a>
-           </center>
 
-         </div>         
-       </div>
-     </div>
-   </div>
- </div>
+          </div>  
+          <center>
+              <button class="btn waves-effect waves-light" type="submit" onclick="window.location.href='/sherlock/loginuser.php'"; name="action" style="margin-bottom: 10px;">
+                LOGIN
+              </button>
+            </center>                            
+        </div>
+      </div>
+
+      <!-- Join team -->
+      <div id="jointeam" class="col s12 m6 push-m3 l6 push-l3" style="padding-top: 20px;">
+       <div class="card grey lighten-4">
+        <div class="card-content">
+          <center><span class="card-title grey-text text-darken-3"><b>Join Team</b></span></center>
+          <form id="jointeam_form" >
+            <div class="row">
+              <div class="input-field col s12">
+                <i class="material-icons prefix">person outline</i>
+                <input id="icon_prefix name" type="text" class="validate" name="name" onblur="validatename(this)" required>
+                <label for="icon_prefix">Name</label>
+              </div>
+              <div class="input-field col s12">
+                <i class="material-icons prefix">email</i>
+                <input id="icon_prefix email" type="text" class="validate" name="email" onblur="validatemail(this)" required>
+                <label for="icon_prefix">Email</label>
+              </div>
+              <div class="input-field col s12">
+                <i class="material-icons prefix">vpn_key</i>
+                <input id="icon_telephone password" type="password" class="validate" name="password" onblur="validatepass(this)" required>
+                <label for="icon_telephone">Password (min 8 characters)</label>
+              </div>
+              <div class="input-field col s12">
+                <i class="material-icons prefix">group</i>
+                <input id="icon_prefix team" type="text" class="validate" name="teamname" required>
+                <label for="icon_prefix">Team Name</label>
+              </div>
+              <div class="input-field col s12">
+                <i class="material-icons prefix">vpn_key</i>
+                <input id="icon_telephone password" type="password" class="validate" name="teampassword" onblur="validatepass(this)" required>
+                <label for="icon_telephone">Team Password (min 8 characters)</label>
+              </div>
+            </div>
+            <div class="progress_loader" style="display:none;"></div>
+            <center>
+              <button class="btn waves-effect waves-light join_submit" type="submit" name="action" style="margin-bottom: 10px;">
+                JOIN
+              </button>
+            </center>            
+          </form>            
+        </div>
+        <center>
+              <button class="btn waves-effect waves-light" type="submit" onclick="window.location.href='/sherlock/loginuser.php'"; name="action" style="margin-bottom: 10px;">
+                LOGIN
+              </button>
+            </center>                     
+      </div>
+    </div>
+
+  </div>
+</div>
 </div>
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
@@ -84,25 +161,3 @@ if (!isset($_SESSION['user']))
 <script type="text/javascript" src="js/register.js"></script>
 </body>
 </html>
-<?php
-}
-else
-{
-  switch ($_SESSION['user']['state']) {
-    case 0:
-      # go to practice page
-    header("Location: practice.php");
-    break;
-
-    case 5:
-      # go to summary page
-    header("Location: Summary.php");
-    break;
-    
-    default:
-      # go to game play
-    header("Location: GamePlay.php");
-    break;
-  }
-}
-?>

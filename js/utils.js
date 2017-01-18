@@ -16,17 +16,7 @@ $("#login_form").submit(function(e) {
                 if(result == 1)
                 {
                     Materialize.toast('Login Successful 😁', 1000);
-                    window.location="practice.php";
-                }
-                else if(result == 2)
-                {
-                    Materialize.toast('Login Successful 😁 ', 1000);
                     window.location="GamePlay.php";
-                }
-                else if(result == 3)
-                {
-                    Materialize.toast('Login Successful 😁', 1000);
-                    window.location="Summary.php";
                 }
                 else
                 {
@@ -73,7 +63,7 @@ $("#createteam_form").submit(function(e) {
                 if(result == 1)
                 {
                     Materialize.toast('Login Successful 😁', 1000);
-                    window.location="GamePlay.php";
+                    window.location="loginuser.php";
                 }
                 else if(result == 2)
                 {
@@ -126,7 +116,7 @@ $("#jointeam_form").submit(function(e) {
                 if(result == 1)
                 {
                     Materialize.toast('Login Successful 😁', 1000);
-                    window.location="GamePlay.php";
+                    window.location="loginuser.php";
                 }
                 else if(result == 2)
                 {

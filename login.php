@@ -5,7 +5,7 @@ if(!isset($_SESSION['user']))
 	$emailId = sanitizeParams($_POST['email']);
 	$password = sanitizeParams($_POST['password']);
 
-	$url = 'cms.cegtechforum.com/api/login';
+	$url = '192.168.0.148:8080/web/api/login';
 	$params =  json_encode(array(
 		"emailId" => $emailId, 
 		"password" => $password
@@ -23,13 +23,7 @@ if(!isset($_SESSION['user']))
 	{
 		$response = json_decode($response, true);
 		$_SESSION['user'] = $response;
-		if ($response['state'] == 0)
 			echo 1;
-		else if ($response['state'] < 5)
-			echo 2;
-		else 
-			echo 3;
-
 	}
 	else
 	{
