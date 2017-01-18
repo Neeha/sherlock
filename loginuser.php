@@ -1,8 +1,13 @@
+<?php 
+session_start();
+if (!isset($_SESSION['user']))
+{
+  ?>
   <!DOCTYPE html>
   <html>
   <head>
     <link rel="shortcut icon" href="img/favicon.ico">
-    <title>Cerebra K'17</title>
+    <title>Sherlock K'17</title>
     <!--Import Google Icon Font-->
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
@@ -35,7 +40,7 @@
 
     </div>
   </nav>
-  <div class="container" style="margin-top: 15vh; margin-bottom: 10vh; min-width: 200px">
+  <div class="container" style="margin-top: 5vh; margin-bottom: 10vh; min-width: 200px">
     <div class="section">
       <div class="row">
        <div class="col s12 m6 push-m3 l6 push-l3">
@@ -53,7 +58,7 @@
                   <i class="material-icons prefix">vpn_key</i>
                   <input id="icon_telephone password" type="password" class="validate" name="password" onblur="validatepass(this)" required>
                   <label for="icon_telephone">Password</label>
-                </div>
+                </div>                
               </div>
               <div class="progress_loader" style="display:none;"></div>
               <center>
@@ -63,16 +68,10 @@
               </center>            
             </form>
             <center>
-             <a href="http://kurukshetra.org.in/#/register" class="waves-effect waves-light btn" style="margin-bottom: 10px;">Register</a><br/>
-             <a href="http://lite.kurukshetra.org.in/#resetpassword" target="_blank" style="margin-bottom: 10px; color:#00796b">Forgot password? Click here to reset</a>
+             <a href="http://lite.kurukshetra.org.in/#forgotpassword" target="_blank" style="margin-bottom: 10px; color:#00796b">Forgot password? Click here to reset</a>
            </center>
 
-         </div>
-         <div class="col s12 teal darken-2">
-           <div class="col s6 push-s3">
-           <img class="responsive-img" src="img/sponsor.png" style="width: 200px;padding-top: 20px;">
-           </div>
-         </div>
+         </div>         
        </div>
      </div>
    </div>
@@ -87,22 +86,7 @@
 <?php
 }
 else
-{
-  switch ($_SESSION['user']['state']) {
-    case 0:
-      # go to practice page
-    header("Location: practice.php");
-    break;
-
-    case 5:
-      # go to summary page
-    header("Location: Summary.php");
-    break;
-    
-    default:
-      # go to game play
-    header("Location: GamePlay.php");
-    break;
-  }
+{  
+    header("Location: GamePlay.php"); 
 }
 ?>

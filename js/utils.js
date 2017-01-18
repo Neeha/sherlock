@@ -16,17 +16,7 @@ $("#login_form").submit(function(e) {
                 if(result == 1)
                 {
                     Materialize.toast('Login Successful 😁', 1000);
-                    window.location="practice.php";
-                }
-                else if(result == 2)
-                {
-                    Materialize.toast('Login Successful 😁 ', 1000);
                     window.location="GamePlay.php";
-                }
-                else if(result == 3)
-                {
-                    Materialize.toast('Login Successful 😁', 1000);
-                    window.location="Summary.php";
                 }
                 else
                 {
@@ -72,8 +62,8 @@ $("#createteam_form").submit(function(e) {
             {
                 if(result == 1)
                 {
-                 $.ajax
-                 ({ 
+                   $.ajax
+                   ({ 
                     url: 'checkKRegistration.php',
                     data: $("#createteam_form").serialize(),
                     type: 'post',
@@ -106,9 +96,9 @@ $("#createteam_form").submit(function(e) {
                         $('.create_submit').show(); 
                     }
                 });
-             }
-             else if(result == 0)
-             {
+               }
+               else if(result == 0)
+               {
                 Materialize.toast('You have not registered for k!', 1000);
 
             }
@@ -154,7 +144,7 @@ $("#jointeam_form").submit(function(e) {
                 if(result == 1)
                 {
                     Materialize.toast('Login Successful 😁', 1000);
-                    window.location="GamePlay.php";
+                    window.location="loginuser.php";
                 }
                 else if(result == 2)
                 {
@@ -314,12 +304,12 @@ function getNextLevel() {
     success: function(result)
     {
 
-     var outer = document.createElement("li");
+       var outer = document.createElement("li");
 
 
-     var in1 = document.createElement("div");
-     in1.className = "collapsible-header grey lighten-4 z-depth-2";
-     in1.style = "padding-bottom:10px;min-height: 4em; line-height: 4em; font-weight:bold; font-size: 20px; text-align:center";
+       var in1 = document.createElement("div");
+       in1.className = "collapsible-header grey lighten-4 z-depth-2";
+       in1.style = "padding-bottom:10px;min-height: 4em; line-height: 4em; font-weight:bold; font-size: 20px; text-align:center";
                     //check
                     in1.textContent = "SET "+result['state'];
                     
