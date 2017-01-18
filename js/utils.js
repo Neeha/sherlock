@@ -129,7 +129,6 @@ $("#jointeam_form").submit(function(e) {
     $('.progress_loader').show();
     $('.join_submit').hide();
     var flag = returnCheckRegister();
-    alert(flag);
     if(flag)
     {
 
