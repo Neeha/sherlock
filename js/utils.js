@@ -59,7 +59,7 @@ $("#login_form").submit(function(e) {
 $("#createteam_form").submit(function(e) { 
     $('.progress_loader').show();
     $('.create_submit').hide();
-    var flag = returnCheckForLogin();
+    var flag = returnCheckRegister();
     if(flag)
     {
         $.ajax
@@ -67,7 +67,7 @@ $("#createteam_form").submit(function(e) {
             url: 'registerteam.php',
             data: $("#createteam_form").serialize(),
             type: 'post',
-            dataType: "json",
+            dataType: "json",            
             success: function(result)
             {
                 if(result == 1)
@@ -77,18 +77,13 @@ $("#createteam_form").submit(function(e) {
                 }
                 else if(result == 2)
                 {
-                    Materialize.toast('team Name already registered 😯 ', 1000);
-                    window.location="GamePlay.php";
+                    Materialize.toast('Team Name already registered 😯 ', 1000);
+                    Materialize.toast('Try with another name', 1000);
                 }
                 else if(result == 3)
                 {
-                    Materialize.toast('Login Successful 😁', 1000);
-                    window.location="Summary.php";
-                }
-                else
-                {
                     Materialize.toast('Login Failed 😯', 1000);
-                    Materialize.toast('Try resetting your password 😯', 1000);
+                    Materialize.toast('Give valid Credentials 😁', 1000);
                 }
                 
                 $('.progress_loader').hide();
@@ -116,12 +111,13 @@ $("#createteam_form").submit(function(e) {
 $("#jointeam_form").submit(function(e) { 
     $('.progress_loader').show();
     $('.join_submit').hide();
-    var flag = returnCheckForLogin();
+    var flag = returnCheckRegister();
+    alert(flag);
     if(flag)
     {
         $.ajax
         ({ 
-            url: 'login.php',
+            url: 'jointeam.php',
             data: $("#jointeam_form").serialize(),
             type: 'post',
             dataType: "json",
@@ -130,22 +126,19 @@ $("#jointeam_form").submit(function(e) {
                 if(result == 1)
                 {
                     Materialize.toast('Login Successful 😁', 1000);
-                    window.location="practice.php";
+                    window.location="GamePlay.php";
                 }
                 else if(result == 2)
                 {
-                    Materialize.toast('Login Successful 😁 ', 1000);
-                    window.location="GamePlay.php";
+                    Materialize.toast('Login Failed 😯', 1000);
                 }
                 else if(result == 3)
                 {
-                    Materialize.toast('Login Successful 😁', 1000);
-                    window.location="Summary.php";
-                }
-                else
-                {
                     Materialize.toast('Login Failed 😯', 1000);
-                    Materialize.toast('Try resetting your password 😯', 1000);
+                }
+                else if(result == 4)
+                {
+                    Materialize.toast('Team already occupied 😯', 1000);
                 }
                 
                 $('.progress_loader').hide();

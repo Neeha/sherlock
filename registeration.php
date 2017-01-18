@@ -1,9 +1,4 @@
-<?php 
-session_start();
-if (!isset($_SESSION['user']))
-{
-  ?>
-  <!DOCTYPE html>
+<!DOCTYPE html>
   <html>
   <head>
     <link rel="shortcut icon" href="img/favicon.ico">
@@ -55,7 +50,7 @@ if (!isset($_SESSION['user']))
          <div class="card grey lighten-4">
           <div class="card-content">
             <center><span class="card-title grey-text text-darken-3"><b>Create Team</b></span></center>
-            <form id="createteam_form" >
+            <form id="createteam_form" method="post" >
               <div class="row">
                 <div class="input-field col s12">
                   <i class="material-icons prefix">person outline</i>
@@ -70,7 +65,7 @@ if (!isset($_SESSION['user']))
                 <div class="input-field col s12">
                   <i class="material-icons prefix">vpn_key</i>
                   <input id="icon_telephone password" type="password" class="validate" name="password" onblur="validatepass(this)" required>
-                  <label for="icon_telephone">Password</label>
+                  <label for="icon_telephone">Password (min 8 characters)</label>
                 </div>
                 <div class="input-field col s12">
                   <i class="material-icons prefix">group</i>
@@ -80,13 +75,13 @@ if (!isset($_SESSION['user']))
                 <div class="input-field col s12">
                   <i class="material-icons prefix">vpn_key</i>
                   <input id="icon_telephone password" type="password" class="validate" name="teampassword" onblur="validatepass(this)" required>
-                  <label for="icon_telephone">Team Password</label>
+                  <label for="icon_telephone">Team Password (min 8 characters)</label>
                 </div>
                 <div class="input-field col s12">
-                  <label for="sherlock">Choose your role:</label><br/><br/>
-                  <input name="group1" value="1" type="radio" id="sherlock" checked />
+                  <label>Choose your role:</label><br/><br/>
+                  <input name="role" value="1" type="radio" id="sherlock" checked />
                   <label for="sherlock">Sherlock</label>
-                  <input name="group1" value="0" type="radio" id="watson" />
+                  <input name="role" value="0" type="radio" id="watson" />
                   <label for="watson">Watson</label>
                 </div>                
               </div>
@@ -123,7 +118,7 @@ if (!isset($_SESSION['user']))
               <div class="input-field col s12">
                 <i class="material-icons prefix">vpn_key</i>
                 <input id="icon_telephone password" type="password" class="validate" name="password" onblur="validatepass(this)" required>
-                <label for="icon_telephone">Password</label>
+                <label for="icon_telephone">Password (min 8 characters)</label>
               </div>
               <div class="input-field col s12">
                 <i class="material-icons prefix">group</i>
@@ -133,7 +128,7 @@ if (!isset($_SESSION['user']))
               <div class="input-field col s12">
                 <i class="material-icons prefix">vpn_key</i>
                 <input id="icon_telephone password" type="password" class="validate" name="teampassword" onblur="validatepass(this)" required>
-                <label for="icon_telephone">Team Password</label>
+                <label for="icon_telephone">Team Password (min 8 characters)</label>
               </div>
             </div>
             <div class="progress_loader" style="display:none;"></div>
@@ -156,25 +151,3 @@ if (!isset($_SESSION['user']))
 <script type="text/javascript" src="js/register.js"></script>
 </body>
 </html>
-<?php
-}
-else
-{
-  switch ($_SESSION['user']['state']) {
-    case 0:
-      # go to practice page
-    header("Location: practice.php");
-    break;
-
-    case 5:
-      # go to summary page
-    header("Location: Summary.php");
-    break;
-    
-    default:
-      # go to game play
-    header("Location: GamePlay.php");
-    break;
-  }
-}
-?>
