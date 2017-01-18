@@ -1,11 +1,9 @@
 <?php 
 //require 'getQuestions.php';
-if (!isset($_SESSION['user']))
+session_start();
+if (isset($_SESSION['user']))
 {
-
-	if (true)
-	{
-		?>
+?>
 		<!DOCTYPE html>
 		<html>
 		<head>
@@ -199,20 +197,6 @@ if (!isset($_SESSION['user']))
 }
 else
 {
-	switch ($_SESSION['user']['state']) {
-		case 5:
-		header("Location: Summary.php");
-		break;
-
-		case 0:
-		header("Location: practice.php");
-		break;
-	}
-}
-}
-else
-{
 	header("Location: index.php");
-
 }
 ?>
