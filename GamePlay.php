@@ -1,9 +1,9 @@
 <?php 
-require 'getQuestions.php';
-if (isset($_SESSION['user']))
+//require 'getQuestions.php';
+if (!isset($_SESSION['user']))
 {
 
-	if ($_SESSION['user']['state'] > 0 && $_SESSION['user']['state'] < 5)
+	if (true)
 	{
 		?>
 		<!DOCTYPE html>
@@ -95,14 +95,6 @@ if (isset($_SESSION['user']))
 			<main>
 				<div class="container" style="padding-top: 20px">
 					<div class="row">
-						<div class="col s12 hoverable">
-							<p class="flow-text center-align">
-								<a>Main Level</a>&nbsp;
-								<a id="timer"></a>&nbsp;
-								<a>Score&nbsp;</a><a id="points"><?php echo $_SESSION['user']['points'] ?></a></p>
-
-							</div>				
-						</div>
 						<div class="row" style="padding-top:20px;">
 							<ul class="tabs" >
 								<li class="tab col s12 l4"><a class="active" href="#game" style="font-size:18px" >Game Play</a></li>
@@ -112,88 +104,70 @@ if (isset($_SESSION['user']))
 							</ul>
 
 							<div id="game" class="col s12" align="center" style="padding-top: 40px">
-								<ul class="collapsible popout" data-collapsible="accordion" style="width:100%; display: inline-block; text-align: left">
-
-									<?php 
-									$j = 0; $count =  0;
-									for($i=0;$i<$_SESSION['user']['state'] ; $i++) { ?>
-									<li>
-										<!-- SET begins -->
-										<div class="collapsible-header grey lighten-4 z-depth-2" style="padding-bottom:10px;min-height: 4em; line-height: 4em; font-weight:bold; font-size: 20px; text-align:center">
-											SET <?php echo $i+1 ?>
+								<div class="current-user">
+									<h4 class="left-align">Current Role</h4>
+									<div class="images">
+										<div class="carousel carousel-slider">
+											<a class="carousel-item" href="#one!"><img src="http://www.nhsborders.scot.nhs.uk/CropUp/desktop/media/16268/small-preview-1.jpg"></a>
+											<a class="carousel-item" href="#two!"><img src="http://www.nhsborders.scot.nhs.uk/CropUp/desktop/media/16268/small-preview-1.jpg"></a>
+											<a class="carousel-item" href="#three!"><img src="http://www.nhsborders.scot.nhs.uk/CropUp/desktop/media/16268/small-preview-1.jpg"></a>
+											<a class="carousel-item" href="#four!"><img src="http://www.nhsborders.scot.nhs.uk/CropUp/desktop/media/16268/small-preview-1.jpg"></a>
 										</div>
-										<div class="collapsible-body z-depth-2">		 	
+									</div>
+									<div class="answer form">
+										<form class="col s12">
 											<div class="row">
-												<br>
-												<?php								
-	  // number of questions in each set
-												//print_r($_SESSION['questions_answered']);
-												for($k=0;$k<(sizeof($_SESSION['questions'])/$_SESSION['user']['state']);$k++)
-												{
-													if(!in_array($_SESSION['questions'][$j]['key'],$_SESSION['questions_answered']))
-													{									 
-														$count = 1;
-														?>
-														<div class="col s8 offset-s2">
-															<div class="card hoverable grey lighten-4">
-																<div class="card-content" style="padding-bottom: -15px;">
-
-																	<div class="col s12" style="font-size:18px;margin-left:5px"><?php echo $_SESSION['questions'][$j]['question']; ?></div>
-
-																	<div class="input-field col s11" style="margin-top:0px; margin-left:15px; color:black;">
-
-																	<div class="col s12 m11">
-																		<input type="text" placeholder="Your answer" id="answer_<?php echo $_SESSION['questions'][$j]['key'] ?>" class="validate"/>
-																	</div>
-																	<div class="col s6 m1">
-																		<a class="btn-floating btn-large waves-effect waves-light" style="margin-left:5%; margin-bottom: 1%; background-color:#39a558;" id="<?php echo $_SESSION['questions'][$j]['key'] ?>" onclick="submitAnswer(this);"><i class="material-icons">done</i></a>
-																		<div class="progress_loader" id="pl_<?php echo $_SESSION['questions'][$j]['key'] ?>" style="display:none;">Loading...</div>
-																	</div>																	
-																		</div>
-
-																		<div class="row">
-
-																		</div>
-																	</div>
-																</div>  
-															</div>
-
-															<?php
-														}
-														$j++;
-													}
-													if($count == 0)
-													{
-														?>
-														<p class="flow-text center-align"> You have answered all questions in this set 😎  </p>
-														<?php
-													}
-													?>
-
+												<div class="input-field col s12 m8">
+													<i class="material-icons prefix">account_circle</i>
+													<input id="answer" name="answer" type="text" class="validate">
 												</div>
+												<div class="input-field col s12 m2">
+
+													<button class="btn btn-floating waves-effect waves-light" type="submit" name="action">
+														<i class="material-icons">done</i>
+													</button>
+												</div>
+												<div class="input-field col s12 m2">
+
+													<button class="btn btn-floating waves-effect waves-light" name="clue">
+														<i class="material-icons">done</i>
+													</button>
+												</div>
+												<div class="progress_loader" id="loader" style="display:none;">Loading...</div>
+
+
 											</div>
-										</li>
-										<?php
-									}
-									?>
-								</ul>
+										</form>
+									</div>
+								</div>
+								<div class="teammate">
+									<h4 class="left-align">Team Role</h4>
+									<div class="images">
+										<div class="carousel carousel-slider">
+											<a class="carousel-item" href="#one!"><img src="http://lorempixel.com/800/400/food/1"></a>
+											<a class="carousel-item" href="#two!"><img src="http://lorempixel.com/800/400/food/2"></a>
+											<a class="carousel-item" href="#three!"><img src="http://lorempixel.com/800/400/food/3"></a>
+											<a class="carousel-item" href="#four!"><img src="http://lorempixel.com/800/400/food/4"></a>
+										</div>
+									</div>
+								</div>
 							</div>
 							<div id="lb" class="col s12" align="center" style="padding-top: 40px">
 								<div class="progress_loader" id="lbloader" style="display:none;">Loading...</div>
 								<div id="leaderboard"></div>
 							</div>
 							<div id="htp" style="padding-top: 40px">
-							<ul style="line-height: 25px; list-style-type: circle;">
-								<li>1.	The event has two rounds: Qualifier and the Final Round</li>
-								<li>2.	Qualifier round has 10 questions and no time limit.</li>
-								<li>3.	The participant has to solve all the questions in the qualifier round to appear for the Final Round.</li>
-								<li>4.	The final round consists of Four Sets with 10 questions per set.</li>
-								<li>5.	Each set will appear after every 15 minutes.</li>
-								<li>6.	The faster the questions are solved, more the bonus points.</li>
-								<li>7.	The participants can switch between sets in the final round.</li>
-								<li>8.	Enter the numerical values for answers without space, without unit.</li>
-								<li>9.	The winners will be declared post the event and will be intimated by the organisers soon after.</li>
-							</ul>
+								<ul style="line-height: 25px; list-style-type: circle;">
+									<li>1.	The event has two rounds: Qualifier and the Final Round</li>
+									<li>2.	Qualifier round has 10 questions and no time limit.</li>
+									<li>3.	The participant has to solve all the questions in the qualifier round to appear for the Final Round.</li>
+									<li>4.	The final round consists of Four Sets with 10 questions per set.</li>
+									<li>5.	Each set will appear after every 15 minutes.</li>
+									<li>6.	The faster the questions are solved, more the bonus points.</li>
+									<li>7.	The participants can switch between sets in the final round.</li>
+									<li>8.	Enter the numerical values for answers without space, without unit.</li>
+									<li>9.	The winners will be declared post the event and will be intimated by the organisers soon after.</li>
+								</ul>
 							</div>
 						</div>
 					</div>
@@ -209,36 +183,11 @@ if (isset($_SESSION['user']))
 	<script type="text/javascript" src="js/utils.js"></script>
 
 
-	<!-- timer -->
-	<script type="text/javascript" src="js/countdown.min.js"></script>
-	<script type="text/javascript">   
-		$(document).ready(function() {
-		var startTime = new Date('<?php echo $_SESSION['user']['startTime']; ?>');
-		var endTime = new Date(startTime.getFullYear(), startTime.getMonth(), startTime.getDate(), startTime.getHours(), startTime.getMinutes()+59, startTime.getSeconds()+18, startTime.getMilliseconds());
-		setInterval(function(){
-			var seconds = countdown(null, endTime).seconds;
-			$('#timer')[0].innerHTML = countdown(null, endTime).hours + ':' + countdown(null, endTime).minutes + ':' + ((seconds < 10) ? "0" + seconds : + seconds);
-		}, 1000);
-		setInterval(function(){			
-			var diff = Math.round(countdown( null , endTime).value/1000);
-			if(diff == 2700 || diff == 1800 || diff == 900)
-			{
-				getNextLevel();		 
-			}
-			else if(diff == 120)
-			{
-				Materialize.toast("Last 2 minutes. Submit your answers! 😮", 1000);
-			}
-			else if(diff == 0)
-			{
-				window.location.href = "logout.php";
-			}
-		}, 1000);
-	});
-</script>
+	<script type="text/javascript" src="js/register.js"></script>
+	<script type="text/javascript">
+		$('.carousel.carousel-slider').carousel({full_width: true});
 
-
-<script type="text/javascript" src="js/register.js"></script>
+	</script>
 
 
 
