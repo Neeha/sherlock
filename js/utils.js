@@ -112,6 +112,7 @@ $("#jointeam_form").submit(function(e) {
     $('.progress_loader').show();
     $('.join_submit').hide();
     var flag = returnCheckRegister();
+    alert(flag);
     if(flag)
     {
         $.ajax
@@ -135,9 +136,9 @@ $("#jointeam_form").submit(function(e) {
                 {
                     Materialize.toast('Login Failed 😯', 1000);
                 }
-                else
+                else if(result == 4)
                 {
-                    Materialize.toast('Login Failed 😯', 1000);
+                    Materialize.toast('Team already occupied 😯', 1000);
                 }
                 
                 $('.progress_loader').hide();

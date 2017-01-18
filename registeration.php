@@ -118,7 +118,7 @@
               <div class="input-field col s12">
                 <i class="material-icons prefix">vpn_key</i>
                 <input id="icon_telephone password" type="password" class="validate" name="password" onblur="validatepass(this)" required>
-                <label for="icon_telephone">Password</label>
+                <label for="icon_telephone">Password (min 8 characters)</label>
               </div>
               <div class="input-field col s12">
                 <i class="material-icons prefix">group</i>
@@ -128,7 +128,7 @@
               <div class="input-field col s12">
                 <i class="material-icons prefix">vpn_key</i>
                 <input id="icon_telephone password" type="password" class="validate" name="teampassword" onblur="validatepass(this)" required>
-                <label for="icon_telephone">Team Password</label>
+                <label for="icon_telephone">Team Password (min 8 characters)</label>
               </div>
             </div>
             <div class="progress_loader" style="display:none;"></div>

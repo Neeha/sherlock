@@ -1,8 +1,6 @@
 <?php
 session_start();
-if(!isset($_SESSION['user']))
-{
-	$userName = sanitizeParams($_POST['name']);
+$userName = sanitizeParams($_POST['name']);
 	$emailId = sanitizeParams($_POST['email']);
 	$password = sanitizeParams($_POST['password']);
 	$teamName = sanitizeParams($_POST['teamname']);
@@ -40,16 +38,13 @@ if(!isset($_SESSION['user']))
 	{
 		echo 3;
 	}
+	else if (curl_getinfo($ch, CURLINFO_HTTP_CODE) == 408)
+	{
+		echo 4;
+	}
 	//header("Location: index.php");
 	
 	
-	
-}
-else
-{
-	echo 4;
-}
-
 function sanitizeParams($param)
 {
 	$param = strip_tags(trim($param));
