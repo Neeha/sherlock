@@ -10,7 +10,7 @@ if (!isset($_SESSION['user']))
 		<html>
 		<head>
 			<link rel="shortcut icon" href="img/favicon.ico">
-			<title>Cerebra K'17</title>
+			<title>Sherlock K'17</title>
 			<!--Import Google Icon Font-->
 			<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 			<!--Import materialize.css-->

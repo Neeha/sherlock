@@ -50,7 +50,7 @@
          <div class="card grey lighten-4">
           <div class="card-content">
             <center><span class="card-title grey-text text-darken-3"><b>Create Team</b></span></center>
-            <form id="createteam_form" >
+            <form id="createteam_form" method="post" >
               <div class="row">
                 <div class="input-field col s12">
                   <i class="material-icons prefix">person outline</i>
@@ -65,7 +65,7 @@
                 <div class="input-field col s12">
                   <i class="material-icons prefix">vpn_key</i>
                   <input id="icon_telephone password" type="password" class="validate" name="password" onblur="validatepass(this)" required>
-                  <label for="icon_telephone">Password</label>
+                  <label for="icon_telephone">Password (min 8 characters)</label>
                 </div>
                 <div class="input-field col s12">
                   <i class="material-icons prefix">group</i>
@@ -75,13 +75,13 @@
                 <div class="input-field col s12">
                   <i class="material-icons prefix">vpn_key</i>
                   <input id="icon_telephone password" type="password" class="validate" name="teampassword" onblur="validatepass(this)" required>
-                  <label for="icon_telephone">Team Password</label>
+                  <label for="icon_telephone">Team Password (min 8 characters)</label>
                 </div>
                 <div class="input-field col s12">
-                  <label for="sherlock">Choose your role:</label><br/><br/>
-                  <input name="role" value="1" type="radio" id="1" checked />
+                  <label>Choose your role:</label><br/><br/>
+                  <input name="role" value="1" type="radio" id="sherlock" checked />
                   <label for="sherlock">Sherlock</label>
-                  <input name="role" value="0" type="radio" id="0" />
+                  <input name="role" value="0" type="radio" id="watson" />
                   <label for="watson">Watson</label>
                 </div>                
               </div>

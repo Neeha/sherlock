@@ -7,16 +7,14 @@ if(!isset($_SESSION['user']))
 	$password = sanitizeParams($_POST['password']);
 	$teamName = sanitizeParams($_POST['teamname']);
 	$teamPassword = sanitizeParams($_POST['teampassword']);
-	$role = sanitizeParams($_POST['role']);
 
-	$url = '192.168.0.148:8080/web/api/register/team';
+	$url = '192.168.0.148:8080/web/api/joinTeam';
 	$params =  json_encode(array(
 		"emailId" => $emailId, 
 		"password" => $password,
 		"userName" => $userName,
 		"teamName" => $teamName,
-		"teamPassword" => $teamPassword,
-		"role" => $role
+		"teamPassword" => $teamPassword
 		));
 	$ch = curl_init( $url );
 	curl_setopt( $ch, CURLOPT_POST, 1);
@@ -30,7 +28,7 @@ if(!isset($_SESSION['user']))
 	if (curl_getinfo($ch, CURLINFO_HTTP_CODE) == 200)
 	{
 		$response = json_decode($response, true);
-		$_SESSION['user'] = $response;
+		//$_SESSION['user'] = $response;
 		echo 1;
 
 	}
