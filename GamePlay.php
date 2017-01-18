@@ -10,7 +10,7 @@ if (!isset($_SESSION['user']))
 		<html>
 		<head>
 			<link rel="shortcut icon" href="img/favicon.ico">
-			<title>Sherlock K'17</title>
+			<title>Cerebra K'17</title>
 			<!--Import Google Icon Font-->
 			<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 			<!--Import materialize.css-->
@@ -128,8 +128,8 @@ if (!isset($_SESSION['user']))
 										<form class="col s12">
 											<div class="row">
 												<div class="input-field col s12 m8">
-													<i class="material-icons prefix">account_circle</i>
-													<input id="answer" name="answer" type="text" class="validate">
+													<i class="material-icons prefix">lightbulb_outline</i>
+													<input id="answer" name="answer" placeholder="answer" type="text" class="validate">
 												</div>
 												<div class="input-field col s6 m2">
 
@@ -140,7 +140,7 @@ if (!isset($_SESSION['user']))
 												<div class="input-field col s6 m2">
 
 													<button class="btn btn-floating waves-effect waves-light" name="clue">
-														<i class="material-icons">done</i>
+														<i class="material-icons">more_vert</i>
 													</button>
 												</div>
 												<div class="progress_loader" id="answer_loader" style="display:none;"></div>
