@@ -30,7 +30,7 @@ if (isset($_SESSION['user']))
           opacity: 0.2 !important;
         }
         .gotomain a:hover{
-            color: #000!important;
+          color: #000!important;
         }
       </style>
     </head>
@@ -47,73 +47,72 @@ if (isset($_SESSION['user']))
     </nav>
 
     <div class="container">
-    <div class="col s12">
+      <div class="col s12">
         <p class="flow-text center-align">
-        <a style="white-space: nowrap;">Practice Level</a>
-        <a class="right gotomain" onclick="getState();" style="cursor: pointer; cursor: hand;"><i class="material-icons right" style="color: #039be5; font-size: 30px;">arrow_forward</i></a>
-           </p>
-     </div>  
+          <a style="white-space: nowrap;">Practice Level</a>
+          <a class="right gotomain" onclick="getState();" style="cursor: pointer; cursor: hand;"><i class="material-icons right" style="color: #039be5; font-size: 30px;">arrow_forward</i></a>
+        </p>
+      </div>  
       <?php
       $count = 0;
       foreach ($_SESSION['practice'] as $question) { 
         if(count($_SESSION['user']['questions_answered']) == count($_SESSION['practice']))
         {
           header("Location: GamePlay.php");
-         ?>
+          ?>
          <!-- <center><button style="margin-top: 20%; font-size: 30px; height: 40px;" class="btn waves-effect waves-light" type="submit" name="action"><a href="GamePlay.php" style="color: #fff;">CLICK TO PROCEED TO MAIN GAME
     <i class="material-icons right">send</i></a>
   </button></center> -->
-        <?php    
+  <?php    
         //break;
-        }
-        if(!in_array($question['key'],$_SESSION['user']['questions_answered']))
-        {                  
-        
-        ?>
-        
-        <div class="row">
-          <div class="col s8 offset-s2">
-            <div class="card hoverable grey lighten-4">
-              <div class="card-content" style="padding-bottom: -15px;">
+}
+if(!in_array($question['key'],$_SESSION['user']['questions_answered']))
+{                  
+  
+  ?>
+  
+  <div class="row">
+    <div class="col s8 offset-s2">
+      <div class="card hoverable grey lighten-4">
+        <div class="card-content" style="padding-bottom: -15px;">
 
-                <div class="col s12" style="font-size:18px;margin-left:5px"><?php echo $question['question'] ?></div>
+          <div class="col s12" style="font-size:18px;margin-left:5px"><?php echo $question['question'] ?></div>
 
-                <div class="input-field" style="margin-top:0px; margin-left:15px; color:black;">
+          <div class="input-field" style="margin-top:0px; margin-left:15px; color:black;">
 
-                  <div class="col s12 m9">
-                    <input type="text" placeholder="Your answer" id="answer_<?php echo $question['key'] ?>" class="validate"/>
-                  </div>
-                  <div class="col s6 m2">
-                    <a class="btn-floating btn-large waves-effect waves-light black-text" style="margin-left:5%; margin-bottom: 1%; width: 36px; height: 36px; background-color:#39a558;" id="<?php echo $question['key'] ?>" onclick="submitAnswer(this);">
-                      <i class="material-icons" style="line-height: 1px;">done</i>
-                    </a>
-                    <div class="progress_loader" id="pl_<?php echo $question['key'] ?>" style="display:none;">Loading...</div>
-                  </div>                  
-                </div>
-
-                <div class="row"></div>
-              </div>
-            </div>  
+            <div class="col s12 m9">
+              <input type="text" placeholder="Your answer" id="answer_<?php echo $question['key'] ?>" class="validate"/>
+            </div>
+            <div class="col s6 m2">
+              <a class="btn-floating btn-large waves-effect waves-light black-text" style="margin-left:5%; margin-bottom: 1%; width: 36px; height: 36px; background-color:#39a558;" id="<?php echo $question['key'] ?>" onclick="submitAnswer(this);">
+                <i class="material-icons" style="line-height: 1px;">done</i>
+              </a>
+            </div>                  
           </div>
+
+          <div class="row"></div>
         </div>
-
-        <?php
-      }
-    }
-      ?>
-      <center>
-        <a onclick="getState();" style="font-size: 22px; cursor: pointer; cursor: hand;">Proceed to next level</a>
-      </center>
-      <br/>
+      </div>  
     </div>
+  </div>
 
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
-    <script type="text/javascript" src="js/utils.js"></script>
-    <script type="text/javascript" src="js/register.js"></script>
-  </body>
-  </html>
   <?php
+}
+}
+?>
+<center>
+  <a onclick="getState();" style="font-size: 22px; cursor: pointer; cursor: hand;">Proceed to next level</a>
+</center>
+<br/>
+</div>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+<script type="text/javascript" src="js/utils.js"></script>
+<script type="text/javascript" src="js/register.js"></script>
+</body>
+</html>
+<?php
 }
 else
 {
