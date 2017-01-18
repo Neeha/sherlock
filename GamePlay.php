@@ -173,7 +173,6 @@ if (isset($_SESSION['user']))
 							?>
 							<h4 class="left-align col s12 m6"><?php echo $role ?></h4>
 
-							<h4 class="left-align col s12 m6">Level <?php echo $_SESSION['team_state']['otherUserLevel']; ?></h4>
 							<div class="images">
 								<div class="carousel carousel-slider" data-indicators="true">
 									<?php 
