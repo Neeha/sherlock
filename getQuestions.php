@@ -21,6 +21,7 @@ if(isset($_SESSION['user']))
 	{
 		$response = json_decode($response, true);
 		$_SESSION['user_state'] = $response['currentUser'];
+		$_SESSION['team_state'] = $response['otherUser'];
 		
 
 	}	
