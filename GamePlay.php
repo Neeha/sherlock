@@ -136,15 +136,15 @@ if (isset($_SESSION['user']))
 									</div>
 									<div class="answer form">
 									<div class="row">
-										<form>
+										<form id="#answersubmit">
 											
 												<div class="input-field col s12 m8">
 													<i class="material-icons prefix">lightbulb_outline</i>
-													<input id="answer" name="answer" placeholder="answer" type="text" class="validate">
+													<input id="answer_<?php $_SESSION['user']['access_token'] ?>" name="answer" placeholder="answer" type="text" class="validate">
 												</div>
 												<div class="input-field col s6 m2">
 
-													<button class="btn btn-floating waves-effect waves-light" type="submit" name="action">
+													<button id="<?php $_SESSION['user']['access_token'] ?>" class="btn btn-floating waves-effect waves-light answersubmit" type="submit" name="action">
 														<i class="material-icons">done</i>
 													</button>
 												</div>

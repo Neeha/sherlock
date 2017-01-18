@@ -77,8 +77,7 @@ $("#createteam_form").submit(function(e) {
                         }
                         else if(result == 2)
                         {
-                            Materialize.toast('Team Name already registered 😯 ', 1000);
-                            Materialize.toast('Try with another name', 1000);
+                            Materialize.toast('Email id already registered 😯 ', 1000);
                         }
                         else if(result == 3)
                         {
@@ -209,6 +208,39 @@ $("#jointeam_form").submit(function(e) {
         $('.progress_loader').hide();
         $('.join_submit').show(); 
     }
+    e.preventDefault();
+});
+
+// answer submit
+$("#answersubmit").submit(function() { 
+    $('.progress_loader').show();
+    $('.answersubmit').hide();
+    answer = document.getElementById(answer).value;
+        $.ajax
+        ({ 
+            url: 'checkKRegistration.php',
+            data: $("#jointeam_form").serialize(),
+            type: 'post',
+            dataType: "json",            
+            success: function(result)
+            {
+                if(result == 1)
+                {
+                   Materialize.toast('Correct answer', 1000);
+                }
+                else if(result == 0)
+                {
+                    Materialize.toast('Wrong answer', 1000);
+                }
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) { 
+            Materialize.toast('Some error occured. Please try after sometime 🙏', 1000);
+            $('.progress_loader').hide();
+            $('.create_submit').show(); 
+        }
+    });
+
+
     e.preventDefault();
 });
 

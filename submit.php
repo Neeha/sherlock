@@ -3,13 +3,11 @@ session_start();
 if(isset($_SESSION['user']))
 {
 	$access_token = $_SESSION['user']['access_token'];
-	$key = sanitizeParams($_POST['key']);
 	$answer = sanitizeParams($_POST['answer']);
 	
-	$url = 'cms.cegtechforum.com/api/submit';
+	$url = '192.168.0.148:8080/player/api/answer';
 	$params =  json_encode(array(
 		"access_token" => $access_token,
-		'key' => $key,
 		'answer' => $answer
 		));
 	$ch = curl_init( $url );
@@ -23,13 +21,11 @@ if(isset($_SESSION['user']))
 	$response = curl_exec( $ch );
 	if (curl_getinfo($ch, CURLINFO_HTTP_CODE) == 200)
 	{
-		$response = array('code' => 1, 'data' => $response);
-		echo json_encode($response);
+		echo 1;
 	}
-	else
+	else if (curl_getinfo($ch, CURLINFO_HTTP_CODE) == 501)
 	{
-		$response = array('code' => 0, 'data' => $response);
-		echo json_encode($response);
+		echo 2;
 	}
 	
 }
