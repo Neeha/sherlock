@@ -69,7 +69,7 @@
                 </div>
                 <div class="input-field col s12">
                   <i class="material-icons prefix">group</i>
-                  <input id="icon_telephone teamname" type="text" class="validate" name="teamname" onblur="validatename(this)" required>
+                  <input id="icon_telephone teamname" type="text" class="validate" name="teamname" required>
                   <label for="icon_telephone">Team Name</label>
                 </div>
                 <div class="input-field col s12">
@@ -122,7 +122,7 @@
               </div>
               <div class="input-field col s12">
                 <i class="material-icons prefix">group</i>
-                <input id="icon_prefix team" type="text" class="validate" name="team" required>
+                <input id="icon_prefix team" type="text" class="validate" name="teamname" required>
                 <label for="icon_prefix">Team Name</label>
               </div>
               <div class="input-field col s12">

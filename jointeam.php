@@ -1,6 +1,8 @@
 <?php
 session_start();
-$userName = sanitizeParams($_POST['name']);
+if(!isset($_SESSION['user']))
+{
+	$userName = sanitizeParams($_POST['name']);
 	$emailId = sanitizeParams($_POST['email']);
 	$password = sanitizeParams($_POST['password']);
 	$teamName = sanitizeParams($_POST['teamname']);
@@ -44,7 +46,8 @@ $userName = sanitizeParams($_POST['name']);
 	}
 	//header("Location: index.php");
 	
-	
+}
+
 function sanitizeParams($param)
 {
 	$param = strip_tags(trim($param));

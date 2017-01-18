@@ -7,7 +7,7 @@ if(!isset($_SESSION['user']))
 	$password = sanitizeParams($_POST['password']);
 	$teamName = sanitizeParams($_POST['teamname']);
 	$teamPassword = sanitizeParams($_POST['teampassword']);
-	$role = sanitizeParams($_POST['role']);
+	$role = $_POST['role'];
 
 	$url = '192.168.0.148:8080/web/api/register/team';
 	$params =  json_encode(array(
