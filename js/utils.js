@@ -54,7 +54,7 @@ $("#createteam_form").submit(function(e) {
     {
         $.ajax
         ({ 
-            url: 'registerteam.php',
+            url: 'checkKRegistration.php',
             data: $("#createteam_form").serialize(),
             type: 'post',
             dataType: "json",            
@@ -62,30 +62,58 @@ $("#createteam_form").submit(function(e) {
             {
                 if(result == 1)
                 {
-                    Materialize.toast('Login Successful 😁', 1000);
-                    window.location="loginuser.php";
-                }
-                else if(result == 2)
-                {
-                    Materialize.toast('Team Name already registered 😯 ', 1000);
-                    Materialize.toast('Try with another name', 1000);
-                }
-                else if(result == 3)
-                {
-                    Materialize.toast('Login Failed 😯', 1000);
-                    Materialize.toast('Give valid Credentials 😁', 1000);
-                }
-                
-                $('.progress_loader').hide();
-                $('.create_submit').show();
-                
-            },
-            error: function(XMLHttpRequest, textStatus, errorThrown) { 
-                Materialize.toast('Some error occured. Please try after sometime 🙏', 1000);
-                $('.progress_loader').hide();
-                $('.create_submit').show(); 
+                   $.ajax
+                   ({ 
+                    url: 'checkKRegistration.php',
+                    data: $("#createteam_form").serialize(),
+                    type: 'post',
+                    dataType: "json",            
+                    success: function(result)
+                    {
+                        if(result == 1)
+                        {
+                            Materialize.toast('Login Successful 😁', 1000);
+                            window.location="GamePlay.php";
+                        }
+                        else if(result == 2)
+                        {
+                            Materialize.toast('Team Name already registered 😯 ', 1000);
+                            Materialize.toast('Try with another name', 1000);
+                        }
+                        else if(result == 3)
+                        {
+                            Materialize.toast('Login Failed 😯', 1000);
+                            Materialize.toast('Give valid Credentials 😁', 1000);
+                        }
+
+                        $('.progress_loader').hide();
+                        $('.create_submit').show();
+
+                    },
+                    error: function(XMLHttpRequest, textStatus, errorThrown) { 
+                        Materialize.toast('Some error occured. Please try after sometime 🙏', 1000);
+                        $('.progress_loader').hide();
+                        $('.create_submit').show(); 
+                    }
+                });
+               }
+               else if(result == 0)
+               {
+                Materialize.toast('You have not registered for k!', 1000);
+
             }
-        });
+
+
+            $('.progress_loader').hide();
+            $('.create_submit').show();
+
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) { 
+            Materialize.toast('Some error occured. Please try after sometime 🙏', 1000);
+            $('.progress_loader').hide();
+            $('.create_submit').show(); 
+        }
+    });
 
     }
     else
@@ -276,12 +304,12 @@ function getNextLevel() {
     success: function(result)
     {
 
-     var outer = document.createElement("li");
+       var outer = document.createElement("li");
 
 
-     var in1 = document.createElement("div");
-     in1.className = "collapsible-header grey lighten-4 z-depth-2";
-     in1.style = "padding-bottom:10px;min-height: 4em; line-height: 4em; font-weight:bold; font-size: 20px; text-align:center";
+       var in1 = document.createElement("div");
+       in1.className = "collapsible-header grey lighten-4 z-depth-2";
+       in1.style = "padding-bottom:10px;min-height: 4em; line-height: 4em; font-weight:bold; font-size: 20px; text-align:center";
                     //check
                     in1.textContent = "SET "+result['state'];
                     
@@ -352,7 +380,7 @@ function getNextLevel() {
                         var in12 = document.createElement('div');
                         in12.className = "col s6 m1";
 
-                            
+
                         in8.append(in12);
                         in6.append(in8);    
                         
@@ -371,10 +399,10 @@ function getNextLevel() {
 
                     document.getElementsByClassName("collapsible popout")[0].append(outer);
                     Materialize.toast('Next Set of Questions are open 🙂', 4000)                     
-             },
-             error: function(XMLHttpRequest, textStatus, errorThrown) { 
-             }
-         });
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) { 
+                }
+            });
 } 
 function getState()
 {

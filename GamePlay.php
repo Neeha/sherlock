@@ -116,7 +116,7 @@ if (isset($_SESSION['user']))
 
 									<h4 class="left-align col s12 m6">Level number</h4>
 									<div class="images">
-										<div class="carousel carousel-slider">
+										<div class="carousel carousel-slider" data-indicators="true">
 											<a class="carousel-item" href="#two!"><img src="https://cdn.pbrd.co/images/nvVunFCnC.jpg"></a>
 											<a class="carousel-item" href="#three!"><img src="http://www.nhsborders.scot.nhs.uk/CropUp/desktop/media/16268/small-preview-1.jpg"></a>
 											<a class="carousel-item" href="#four!"><img src="http://www.nhsborders.scot.nhs.uk/CropUp/desktop/media/16268/small-preview-1.jpg"></a>
