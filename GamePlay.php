@@ -176,9 +176,31 @@ if (isset($_SESSION['user']))
 									</div>
 								</div>
 							</div>
+
 							<div id="lb" class="col s12" align="center" style="padding-top: 40px">
 								<div class="progress_loader" id="lbloader" style="display:none;">Loading...</div>
 								<div id="leaderboard"></div>
+					</div>
+						<div class="teammate" style="padding-top: 20px">
+							<?php 
+							$role='';
+							if($_SESSION['team_state']['otherUserRole']==1)
+								$role = 'Sherlock';
+							else
+								$role = 'Watson';
+							?>
+							<h4 class="left-align col s12 m6"><?php echo $role ?></h4>
+
+							<div class="images">
+								<div class="carousel carousel-slider" data-indicators="true">
+									<?php 
+									$j = 0; $count =  0;
+									for($i=0;$i<sizeof($_SESSION['team_state']['otherUserUrls']) ; $i++) { ?>	
+
+									<a class="carousel-item" href="#two!"><img src="<?php echo $_SESSION['team_state']['otherUserUrls'][$i] ?> "></a>
+									<?php
+								}
+								?>											
 							</div>
 						</div>
 					</div>
