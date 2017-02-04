@@ -9,7 +9,7 @@ if(!isset($_SESSION['user']))
 	$teamPassword = sanitizeParams($_POST['teampassword']);
 	$role = $_POST['role'];
 
-	$url = 'http://dumeel.kurukshetra.org.in/web/api/register/team';
+	$url = 'http://rugbyplayer.kurukshetra.org.in/web/api/register/team';
 	$params =  json_encode(array(
 		"emailId" => $emailId, 
 		"password" => $password,

@@ -5,7 +5,7 @@ if(!isset($_SESSION['user']))
 	$emailId = sanitizeParams($_POST['email']);
 	$password = sanitizeParams($_POST['password']);
 
-	$url = 'http://dumeel.kurukshetra.org.in/web/api/login';
+	$url = 'http://rugbyplayer.kurukshetra.org.in/web/api/login';
 	$params =  json_encode(array(
 		"emailId" => $emailId, 
 		"password" => $password

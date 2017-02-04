@@ -159,7 +159,18 @@ if (isset($_SESSION['user']))
 												?>
 											</div>										
 										</div>
-										<a href="http://kurukshetra.org.in/registration.html" style="text-align: left;font-size: 20px;" download>Click here to download the puzzle</a>								
+
+										<?php
+											$level = $user_state['currentUserLevel'];
+											$len = sizeof($user_state['currentUserUrls']);
+											if($level == 1)
+											{
+										?>
+											<a href="<?php echo $user_state['currentUserUrls'][$len-1] ?>" style="text-align: left;font-size: 20px;" download>Click here to download the puzzle</a>	
+										<?php							
+										}
+										?>
+										
 									<div>
 									<div class="row">
 										<form id="answer_form" method="post">
@@ -281,6 +292,30 @@ if (isset($_SESSION['user']))
 			preventDefault();
 });
 	</script>
+
+<script>
+!function() {
+  var t;
+  if (t = window.driftt = window.drift = window.driftt || [], !t.init) return t.invoked ? void (window.console && console.error && console.error("Drift snippet included twice.")) : (t.invoked = !0, 
+  t.methods = [ "identify", "config", "track", "reset", "debug", "show", "ping", "page", "hide", "off", "on" ], 
+  t.factory = function(e) {
+    return function() {
+      var n;
+      return n = Array.prototype.slice.call(arguments), n.unshift(e), t.push(n), t;
+    };
+  }, t.methods.forEach(function(e) {
+    t[e] = t.factory(e);
+  }), t.load = function(t) {
+    var e, n, o, i;
+    e = 3e5, i = Math.ceil(new Date() / e) * e, o = document.createElement("script"), 
+    o.type = "text/javascript", o.async = !0, o.crossorigin = "anonymous", o.src = "https://js.driftt.com/include/" + i + "/" + t + ".js", 
+    n = document.getElementsByTagName("script")[0], n.parentNode.insertBefore(o, n);
+  });
+}();
+drift.SNIPPET_VERSION = '0.3.1';
+drift.load('5vyi6i54ey22');
+</script>
+<!-- End of Async Drift Code -->
 
 
 

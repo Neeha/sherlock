@@ -1,4 +1,10 @@
-<!DOCTYPE html>
+<?php 
+require 'myState.php';
+//session_start();
+if (isset($_SESSION['user']))
+{
+?>
+	<!DOCTYPE html>
 		<html>
 		<head>
 			<link rel="shortcut icon" href="img/favicon.ico">
@@ -92,56 +98,21 @@
 					<div class="row">
 						<div class="row" style="padding-top:20px;">							
 
-							<div id="game" class="col s12" align="center" style="padding-top: 40px">
-								<?php 
-							$role='';
-							if($user_state['currentUserRole'])
-								$role = 'Sherlock';
-							else
-								$role = 'Watson';
-							?>
-							<h4 class="left-align col s12 m6"><?php echo $role ?></h4>
-								
-
+							<div class="col s12" align="center" style="padding-top: 20px">								
 								<div class="current-user">
 									<div class="images">
-											<div class="carousel carousel-slider first" data-indicators="true">	
+											<div class="carousel carousel-slider" data-indicators="true">	
 												<?php 
 												$j = 0; $count =  0;
-												for($i=0;$i<sizeof($user_state['currentUserUrls']) ; $i++) { ?>	
+												for($i=0;$i<sizeof($asked_state['currentUserUrls']) ; $i++) { ?>	
 
-												<a class="carousel-item" href="#<?php echo $i ?>"><img src="<?php echo $user_state['currentUserUrls'][$i] ?> "></a>
+												<a class="carousel-item"><img src="<?php echo $asked_state['currentUserUrls'][$i] ?> "></a>
 												<?php
 												}
 												?>
 											</div>										
 										</div>																		
-								</div>
-								<div class="teammate" style="padding-top: 20px">
-							<?php 
-							$role='';
-							if($team_state['otherUserRole'])
-								$role = 'Sherlock';
-							else
-								$role = 'Watson';
-							?>
-							<h4 class="left-align col s12 m6"><?php echo $role ?></h4>
-							<br/>
-
-								<div class="images">
-									<div class="carousel carousel-slider second" data-indicators="true">
-										<?php 
-										$j = 0; $count =  0;
-										for($i=0;$i<sizeof($team_state['otherUserUrls']) ; $i++) { ?>	
-
-										<a class="carousel-item" href="#two!"><img src="<?php echo $team_state['otherUserUrls'][$i] ?> "></a>
-										<?php
-									}
-									?>											
-									</div>
 								</div>								
-
-						</div>
 							</div>							
 					</div>
 			</div>
@@ -159,7 +130,7 @@
 <!-- 	<script type="text/javascript">
 		$('.carousel').carousel('indicators',true);
 	</script> -->
-	<script type="text/javascript">
+	<!-- <script type="text/javascript">
 		$(document).ready(function(){
 			$('.carousel.carousel-slider.first').carousel({full_width: true});
 			$('.carousel.carousel-slider.first').css('height','100vh');
@@ -189,10 +160,17 @@
 			$('#playdesc').toggle();
 			preventDefault();
 });
-	</script>
+	</script> -->
 
 
 
 </body>
 
 </html>
+<?php
+}
+else
+{
+	header("Location: index.php");
+}
+?>

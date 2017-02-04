@@ -254,7 +254,6 @@ function submitAnswer(e) {
     $(e).hide();
     $(document.getElementById('loader_'+e.id)).show();     
     answer = document.getElementById('answer_'+e.id).value;
-    alert(answer);
     $.ajax
     ({ 
         url: 'submit.php',
@@ -264,26 +263,20 @@ function submitAnswer(e) {
         
         success: function(result)
         {
-            //result['data'] = jQuery.parseJSON(result['data']);
-            //if(result['code']==1)
             if(result == 1)
             {
                 Materialize.toast('Right Answer! 😎', 1000);
                 $(document.getElementById('loader_'+e.id)).hide();
                 $(e).hide();
                 window.location="GamePlay.php";                
-                // if(result['data']['questions_answered'].length > 10)
-                //     document.getElementById("points").innerHTML = result['data']['points'];
             }
             else if(result == 2)
-            //else if(result['code']==0)
             {
                 Materialize.toast('Wrong answer! 😯', 1000);
                 $(document.getElementById('loader_'+e.id)).hide();
                 $(e).show();
                 window.location="GamePlay.php";                
-                // if(!result['data']['state'] == 0)
-                //     document.getElementById("points").innerHTML = result['data']['points'];                
+          
             }
         },
         error: function(XMLHttpRequest, textStatus, errorThrown) { 
@@ -479,26 +472,29 @@ function getNextLevel() {
 } 
 function getState(e)
 {
+   console.log(e);
     $.ajax
     ({ 
         url: 'myState.php',
-        data: 'level='+e.id,
+        data: 'level='+e,
         type: 'post',
         dataType: "json",
         success: function(result)
         {
-            if(result['state']==1)
-            {
+            alert(result);
+            //if(result['currentUser']['currentUserUrls']==1)
+            //{
                 window.location.href = "leveldisplay.php";     
                            
-            }
-            else if(result['state']==0)
-            {
-                Materialize.toast('Complete all questions to proceed to next level', 4000);                
-            }            
+            // }
+            // else if(result['state']==0)
+            // {
+            //     Materialize.toast('Complete all questions to proceed to next level', 4000);                
+            // }            
         },
         error: function(XMLHttpRequest, textStatus, errorThrown) { 
-            alert('error');          
+            alert('error'); 
+            console.log(errorThrown);         
             $(document.getElementById('clue_'+e.id)).hide();
             $(e).show();
         }

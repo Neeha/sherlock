@@ -4,7 +4,7 @@ if(isset($_SESSION['user']))
 {
 	$access_token = $_SESSION['user']['access_token'];
 	
-	$url = 'http://dumeel.kurukshetra.org.in/player/api/questions';
+	$url = 'http://rugbyplayer.kurukshetra.org.in/player/api/questions';
 	$params =  json_encode(array(
 		"access_token" => $access_token
 		));
