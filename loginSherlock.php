@@ -33,10 +33,10 @@ if (!isset($_SESSION['user']))
   </head>
 
   <body>
-   <nav class="top-nav teal darken-2" style="height: 80px">
+   <nav class="top-nav teal darken-2" style="height: 120px">
     <div class="nav-wrapper">
-      <a href="//kurukshetra.org.in" class="brand-logo"><img class="responsive-img" src="img/k_logo.png" style="width: 200px"></a>
-      <a href="#" class="brand-logo right hide-on-med-and-down" style="padding-top: 20px"><img class="responsive-img" src="img/ceg.png" style="width: 200px"></a>
+      <a href="//kurukshetra.org.in" class="brand-logo"><img class="responsive-img" src="img/k_logo.png" style="width: 220px"></a>
+      <a href="#" class="brand-logo right hide-on-med-and-down" style="padding-top: 30px"><img class="responsive-img" src="img/ceg.png" style="width: 200px"></a>
 
     </div>
   </nav>
@@ -46,8 +46,8 @@ if (!isset($_SESSION['user']))
        <div class="col s12 m6 push-m3 l6 push-l3">
          <div class="card grey lighten-4">
           <div class="card-content">
-            <center><span class="card-title grey-text text-darken-3"><b>Login</b></span></center>
-            <form id="login_form" >
+            <center><span class="card-title grey-text text-darken-3"><b>Login to Play Sherlock</b></span></center>
+            <form id="login_sherlock_form" >
               <div class="row">
                 <div class="input-field col s12">
                   <i class="material-icons prefix">email</i>
@@ -56,21 +56,17 @@ if (!isset($_SESSION['user']))
                 </div>
                 <div class="input-field col s12">
                   <i class="material-icons prefix">vpn_key</i>
-                  <input id="icon_telephone password" type="password" class="validate" name="password" onblur="validatepass(this)" required>
+                  <input id="icon_telephone password" type="password" class="validate" name="password" onkeyup="validatepass(this)" required>
                   <label for="icon_telephone">Password</label>
                 </div>                
               </div>
               <div class="progress_loader" style="display:none;"></div>
               <center>
-                <button class="btn waves-effect waves-light login_submit" type="submit" name="action" style="margin-bottom: 10px;">
+                <button class="btn waves-effect waves-light login_sherlock_submit" type="submit" name="action" style="margin-bottom: 10px;">
                   Login
                 </button>
               </center>            
-            </form>
-            <center>
-             <a href="http://lite.kurukshetra.org.in/#forgotpassword" target="_blank" style="margin-bottom: 10px; color:#00796b">Forgot password? Click here to reset</a>
-           </center>
-
+            </form>          
          </div>         
        </div>
      </div>

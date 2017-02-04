@@ -1,10 +1,4 @@
-<?php 
-include 'getQuestions.php';
-//session_start();
-if (isset($_SESSION['user']))
-{
-?>
-		<!DOCTYPE html>
+<!DOCTYPE html>
 		<html>
 		<head>
 			<link rel="shortcut icon" href="img/favicon.ico">
@@ -96,58 +90,21 @@ if (isset($_SESSION['user']))
 			<main>
 				<div class="container" style="padding-top: 20px">
 					<div class="row">
-						<div class="row" style="padding-top:20px;">
-							<ul class="tabs" >
-								<li class="tab col s12 m4"><a class="active" href="#game" style="font-size:18px">Game Play</a></li>
-								<li class="tab col s12 m4"><a href="#lb" style="font-size:18px" onclick="getLeaderboard();">Leaderboard</a></li>
-								<li class="tab col s12 m4"><a href="#ann" style="font-size:18px">Announcements</a></li>
-							</ul>
+						<div class="row" style="padding-top:20px;">							
 
 							<div id="game" class="col s12" align="center" style="padding-top: 40px">
-
-								<ul class="pagination">
 								<?php 
-									$j = 0; $count =  0;
-									for($i=1;$i<$user_state['currentUserLevel'] ; $i++) 
-									{ 
-								?>	
-									<li class="waves-effect"><a onclick="getState(<?php echo $i ?>);"><?php echo $i ?></a></li>
-								<?php
-								}
-								?>
-								<li class="active"><a href="#!"><?php echo $user_state['currentUserLevel'] ?></a></li>
-								</ul>
-
+							$role='';
+							if($user_state['currentUserRole'])
+								$role = 'Sherlock';
+							else
+								$role = 'Watson';
+							?>
+							<h4 class="left-align col s12 m6"><?php echo $role ?></h4>
+								
 
 								<div class="current-user">
-								<?php 
-								$role='';
-								if($user_state['currentUserRole'])
-									$role = 'Sherlock';
-								else
-									$role = 'Watson';
-								?>
-									<h4 class="left-align col s12 m6">Hey <?php echo $role ?> (<?php echo $user_state['currentUserName']; ?>)</h4>
-
-									<h4 class="left-align col s12 m6">Current Level: <?php echo $user_state['currentUserLevel']?></h4>
-									<!-- <div class="anna-univ-location">
-									</div> -->
-									<!-- <div>
-										<input type="text" id="col"/>
-    <br/>
-        <a onclick="getColor('#4818c0')" ><img style="width:50px;height:50px;background-color: #4818c0"/></a>
-        <a onclick="getColor('#007878')" ><img style="width:50px;height:50px;background-color: #007878"/></a>
-        <a onclick="getColor('#ffff00')" ><img style="width:50px;height:50px;background-color: #ffff00"/></a>
-        <a onclick="getColor('#78ff00')" ><img style="width:50px;height:50px;background-color: #78ff00"/></a>
-        <a onclick="getColor('#300030')" ><img style="width:50px;height:50px;background-color: #300030"/></a>
-        <a onclick="getColor('#000000')" ><img style="width:50px;height:50px;background-color: #000000"/></a>
-        <a onclick="getColor('#780078')" ><img style="width:50px;height:50px;background-color: #780078"/></a>
-        <a onclick="getColor('#0000ff')" ><img style="width:50px;height:50px;background-color: #0000ff"/></a>
-        <a onclick="getColor('#ff0000')" ><img style="width:50px;height:50px;background-color: #ff0000"/></a>
-        <a onclick="getColor('#ff7800')" ><img style="width:50px;height:50px;background-color: #ff7800"/></a>
-									</div> -->
-
-										<div class="images">
+									<div class="images">
 											<div class="carousel carousel-slider first" data-indicators="true">	
 												<?php 
 												$j = 0; $count =  0;
@@ -158,35 +115,7 @@ if (isset($_SESSION['user']))
 												}
 												?>
 											</div>										
-										</div>
-										<a href="http://kurukshetra.org.in/registration.html" style="text-align: left;font-size: 20px;" download>Click here to download the puzzle</a>								
-									<div>
-									<div class="row">
-										<form id="answer_form" method="post">
-											
-												<div class="input-field col s12 m8">
-													<i class="material-icons prefix">lightbulb_outline</i>
-													<input id="answer_<?php echo $_SESSION['user']['access_token'] ?>" name="answer" placeholder="answer" type="text" class="validate">
-												</div>
-												<div class="input-field col s6 m2">
-
-													<button id="<?php echo $_SESSION['user']['access_token'] ?>" class="btn btn-floating waves-effect waves-light" onclick="submitAnswer(this);" type="submit" name="action">
-														<i class="material-icons">done</i>
-													</button>
-												</div>
-												<div class="progress_loader" id="loader_<?php echo $_SESSION['user']['access_token'] ?>" style="display:none;"></div>
-											
-										</form>
-										<div class="input-field col s6 m2">
-											<button id="howtoplay" class="btn btn-floating waves-effect waves-light" name="clue">
-												<i class="material-icons">more_vert</i>
-											</button>
-										</div>
-										</div>
-										<div id="playdesc" style="display: none;">
-											<h5><?php echo $user_state['currentUserHint']; ?></h5>
-												</div>
-									</div>
+										</div>																		
 								</div>
 								<div class="teammate" style="padding-top: 20px">
 							<?php 
@@ -213,11 +142,7 @@ if (isset($_SESSION['user']))
 								</div>								
 
 						</div>
-							</div>
-							<div id="lb" class="col s12" align="center" style="padding-top: 40px">
-								<div class="progress_loader" id="lbloader" style="display:none;">Loading...</div>
-								<div id="leaderboard"></div>
-							</div>						
+							</div>							
 					</div>
 			</div>
 
@@ -230,22 +155,6 @@ if (isset($_SESSION['user']))
 
 	<script type="text/javascript" src="js/utils.js"></script>
 
-	<script type="text/javascript">
-    $(window).load(function() {
-        var main = document.createElement('div');
-        var f = document.createElement('iframe');
-        f.src = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3887.3888654732154!2d80.23317031390987!3d13.010890790830125!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a52679e8ab07191%3A0xd034864eb4cef07a!2sAnna+University+-+College+Of+Engineering!5e0!3m2!1sen!2sus!4v1480493857269'; 
-        f.width = 600; 
-        f.height = 300;
-        main.append(f);
-        $('.anna-univ-location').append(main);
-    });
-
-    function getColor(block)
-    {
-            document.getElementById("col").value = document.getElementById("col").value+block;    
-    }
-</script>
 	<script type="text/javascript" src="js/register.js"></script>
 <!-- 	<script type="text/javascript">
 		$('.carousel').carousel('indicators',true);
@@ -287,10 +196,3 @@ if (isset($_SESSION['user']))
 </body>
 
 </html>
-<?php
-}
-else
-{
-	header("Location: index.php");
-}
-?>

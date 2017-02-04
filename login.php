@@ -4,8 +4,8 @@ if(!isset($_SESSION['user']))
 {
 	$emailId = sanitizeParams($_POST['email']);
 	$password = sanitizeParams($_POST['password']);
-
-	$url = '192.168.0.148:8080/web/api/login';
+	
+	$url = 'shinigami.kurukshetra.org.in/web/api/login';
 	$params =  json_encode(array(
 		"emailId" => $emailId, 
 		"password" => $password
@@ -22,7 +22,10 @@ if(!isset($_SESSION['user']))
 	if (curl_getinfo($ch, CURLINFO_HTTP_CODE) == 200)
 	{
 		$response = json_decode($response, true);
-		$_SESSION['user']['access_token'] = $response;
+		$_SESSION['player_email'] = $emailId;
+		$_SESSION['player_pass'] = $password;
+		//$_SESSION['user']['access_token'] = $response;
+		//$_SESSION['user'] = $response;
 			echo 1;
 	}
 	else

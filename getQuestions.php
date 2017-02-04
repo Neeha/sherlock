@@ -4,7 +4,7 @@ if(isset($_SESSION['user']))
 {
 	$access_token = $_SESSION['user']['access_token'];
 	
-	$url = '192.168.0.148:8080/player/api/questions';
+	$url = 'http://dumeel.kurukshetra.org.in/player/api/questions';
 	$params =  json_encode(array(
 		"access_token" => $access_token
 		));
@@ -20,9 +20,18 @@ if(isset($_SESSION['user']))
 	if (curl_getinfo($ch, CURLINFO_HTTP_CODE) == 200)
 	{
 		$response = json_decode($response, true);
-		$_SESSION['user_state'] = $response['currentUser'];
-		$_SESSION['team_state'] = $response['otherUser'];
-		
+		$user_state = $response['currentUser'];
+		$user_state['currentUserName']= $response['currentUser']['currentUserName'];
+		$user_state['currentUserLevel']= $response['currentUser']['currentUserLevel'];
+		$user_state['currentUserRole']=$response['currentUser']['currentUserRole'];
+		$user_state['currentUserHint']=$response['currentUser']['currentUserHint'];
+		$user_state['currentUserUrls']=$response['currentUser']['currentUserUrls'];
+
+		$team_state = $response['otherUser'];
+		$team_state['otherUserRole']= $response['otherUser']['otherUserRole'];
+		$team_state['otherUserUrls']=$response['otherUser']['otherUserUrls'];
+		//$_SESSION['team_state'] = $response['otherUser'];		
+		//$user_state['currentUserName']=$response
 
 	}	
 }

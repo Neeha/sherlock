@@ -9,7 +9,7 @@ if(!isset($_SESSION['user']))
 	$teamPassword = sanitizeParams($_POST['teampassword']);
 	$role = $_POST['role'];
 
-	$url = '192.168.0.148:8080/web/api/register/team';
+	$url = 'http://dumeel.kurukshetra.org.in/web/api/register/team';
 	$params =  json_encode(array(
 		"emailId" => $emailId, 
 		"password" => $password,
@@ -41,6 +41,10 @@ if(!isset($_SESSION['user']))
 	else if (curl_getinfo($ch, CURLINFO_HTTP_CODE) == 403)
 	{
 		echo 3;
+	}
+	else if (curl_getinfo($ch, CURLINFO_HTTP_CODE) == 406)
+	{
+		echo 4;
 	}
 	//header("Location: index.php");
 	

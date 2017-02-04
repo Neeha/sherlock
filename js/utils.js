@@ -1,4 +1,4 @@
-// handle login
+// handle kurukshetra login
 $("#login_form").submit(function(e) { 
     $('.progress_loader').show();
     $('.login_submit').hide();
@@ -16,12 +16,11 @@ $("#login_form").submit(function(e) {
                 if(result == 1)
                 {
                     Materialize.toast('Login Successful 😁', 1000);
-                    window.location="GamePlay.php";
+                    window.location="createjoin.php";
                 }
                 else
                 {
                     Materialize.toast('Login Failed 😯', 1000);
-                    Materialize.toast('Try resetting your password 😯', 1000);
                 }
                 
                 $('.progress_loader').hide();
@@ -45,6 +44,52 @@ $("#login_form").submit(function(e) {
     e.preventDefault();
 });
 
+
+// handle kurukshetra login
+$("#login_sherlock_form").submit(function(e) { 
+    $('.progress_loader').show();
+    $('.login_sherlock_submit').hide();
+    var flag = returnCheckForLogin();
+    if(flag)
+    {
+        $.ajax
+        ({ 
+            url: 'login_sherlock.php',
+            data: $("#login_sherlock_form").serialize(),
+            type: 'post',
+            dataType: "json",
+            success: function(result)
+            {
+                if(result == 1)
+                {
+                    Materialize.toast('Login Successful 😁', 1000);
+                    window.location="GamePlay.php";
+                }
+                else
+                {
+                    Materialize.toast('Login Failed 😯', 1000);
+                }
+                
+                $('.progress_loader').hide();
+                $('.login_sherlock_submit').show();
+                
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) { 
+                Materialize.toast('Some error occured. Please try after sometime 🙏', 1000);
+                $('.progress_loader').hide();
+                $('.login_sherlock_submit').show(); 
+            }
+        });
+
+    }
+    else
+    {
+        Materialize.toast('Enter Valid Credentials 😕', 1000);
+        $('.progress_loader').hide();
+        $('.login_submit').show(); 
+    }
+    e.preventDefault();
+});
 // registeration - create team
 $("#createteam_form").submit(function(e) { 
     $('.progress_loader').show();
@@ -62,8 +107,8 @@ $("#createteam_form").submit(function(e) {
             {
                 if(result == 1)
                 {
-                   $.ajax
-                   ({ 
+                $.ajax
+                ({ 
                     url: 'registerteam.php',
                     data: $("#createteam_form").serialize(),
                     type: 'post',
@@ -73,7 +118,7 @@ $("#createteam_form").submit(function(e) {
                         if(result == 1)
                         {
                             Materialize.toast('Login Successful 😁', 1000);
-                            window.location="loginuser.php";
+                            window.location="loginSherlock.php";
                         }
                         else if(result == 2)
                         {
@@ -81,8 +126,11 @@ $("#createteam_form").submit(function(e) {
                         }
                         else if(result == 3)
                         {
-                            Materialize.toast('Login Failed 😯', 1000);
-                            Materialize.toast('Give valid Credentials 😁', 1000);
+                            Materialize.toast('Team Name exists 😯', 1000);
+                        }
+                        else if(result == 4)
+                        {
+                            Materialize.toast('Email id already registered 😯 ', 1000);
                         }
 
                         $('.progress_loader').hide();
@@ -95,18 +143,12 @@ $("#createteam_form").submit(function(e) {
                         $('.create_submit').show(); 
                     }
                 });
-               }
-               else if(result == 0)
-               {
-                Materialize.toast('You have not registered for k!', 1000);
-
-            }
-
-
-            $('.progress_loader').hide();
-            $('.create_submit').show();
-
-        },
+                }
+                else if(result == 0)
+                {
+                    Materialize.toast('You have not registered for k!', 1000);
+                }
+            },
         error: function(XMLHttpRequest, textStatus, errorThrown) { 
             Materialize.toast('Some error occured. Please try after sometime 🙏', 1000);
             $('.progress_loader').hide();
@@ -131,9 +173,6 @@ $("#jointeam_form").submit(function(e) {
     var flag = returnCheckRegister();
     if(flag)
     {
-
-
-
         $.ajax
         ({ 
             url: 'checkKRegistration.php',
@@ -155,7 +194,7 @@ $("#jointeam_form").submit(function(e) {
                 if(result == 1)
                 {
                     Materialize.toast('Login Successful 😁', 1000);
-                    window.location="loginuser.php";
+                    window.location="loginSherlock.php";
                 }
                 else if(result == 2)
                 {
@@ -210,75 +249,46 @@ $("#jointeam_form").submit(function(e) {
     e.preventDefault();
 });
 
-// answer submit
-$("#answersubmit").submit(function() { 
-    $('.progress_loader').show();
-    $('.answersubmit').hide();
-    answer = document.getElementById(answer).value;
-        $.ajax
-        ({ 
-            url: 'checkKRegistration.php',
-            data: $("#jointeam_form").serialize(),
-            type: 'post',
-            dataType: "json",            
-            success: function(result)
-            {
-                if(result == 1)
-                {
-                   Materialize.toast('Correct answer', 1000);
-                }
-                else if(result == 0)
-                {
-                    Materialize.toast('Wrong answer', 1000);
-                }
-        },
-        error: function(XMLHttpRequest, textStatus, errorThrown) { 
-            Materialize.toast('Some error occured. Please try after sometime 🙏', 1000);
-            $('.progress_loader').hide();
-            $('.create_submit').show(); 
-        }
-    });
-
-
-    e.preventDefault();
-});
-
-// practice round - validation answers
-function submitAnswer(e) { 
+// validation of answers
+function submitAnswer(e) {
     $(e).hide();
-    $(document.getElementById('pl_'+e.id)).show();
+    $(document.getElementById('loader_'+e.id)).show();     
     answer = document.getElementById('answer_'+e.id).value;
+    alert(answer);
     $.ajax
     ({ 
         url: 'submit.php',
-        data: 'key=' + e.id + '&answer=' + answer,
+        data: 'answer=' + answer,
         type: 'post',
         dataType: "json",
+        
         success: function(result)
         {
-            result['data'] = jQuery.parseJSON(result['data']);
-            if(result['code']==1)
+            //result['data'] = jQuery.parseJSON(result['data']);
+            //if(result['code']==1)
+            if(result == 1)
             {
                 Materialize.toast('Right Answer! 😎', 1000);
-                document.getElementById('answer_'+e.id).disabled = true;
-                $(document.getElementById('pl_'+e.id)).hide();
+                $(document.getElementById('loader_'+e.id)).hide();
                 $(e).hide();
-                if(result['data']['questions_answered'].length > 10)
-                    document.getElementById("points").innerHTML = result['data']['points'];
+                window.location="GamePlay.php";                
+                // if(result['data']['questions_answered'].length > 10)
+                //     document.getElementById("points").innerHTML = result['data']['points'];
             }
-            else if(result['code']==0)
+            else if(result == 2)
+            //else if(result['code']==0)
             {
                 Materialize.toast('Wrong answer! 😯', 1000);
-                $(document.getElementById('pl_'+e.id)).hide();
-                alert(e.id);
+                $(document.getElementById('loader_'+e.id)).hide();
                 $(e).show();
-                if(!result['data']['state'] == 0)
-                    document.getElementById("points").innerHTML = result['data']['points'];                
+                window.location="GamePlay.php";                
+                // if(!result['data']['state'] == 0)
+                //     document.getElementById("points").innerHTML = result['data']['points'];                
             }
         },
         error: function(XMLHttpRequest, textStatus, errorThrown) { 
             Materialize.toast('Some error occured. Please try after sometime 🙏', 1000);
-            $(document.getElementById('pl_'+e.id)).hide();
+            $(document.getElementById('loader_'+e.id)).hide();
             $(e).show();
         }
     });
@@ -303,51 +313,51 @@ function getLeaderboard()
             th1.textContent = "Rank";
             //th1.data-field = "rank";
             var th2 = document.createElement('th');
-            th2.textContent = "Player";
+            th2.textContent = "Team";
            // th1.data-field = "email";
-           var th3 = document.createElement('th');
-           th3.textContent = "Points";
+           // var th3 = document.createElement('th');
+           // th3.textContent = "Points";
             //th1.data-field = "points";
 
             tr.append(th1);
             tr.append(th2);
-            tr.append(th3);
+            //tr.append(th3);
             thead.append(tr);
             divtable.append(thead);
 
             var tbody = document.createElement('tbody');
-            for (var i=0 ; i< result['leaderboard'].length ;i++)
+            for (var i=0 ; i< result.length ;i++)
             {
                 var tr1 = document.createElement('tr');
                 var td11 = document.createElement('td');
                 td11.textContent = i+1;
                 var td12 = document.createElement('td');
-                td12.textContent = result['leaderboard'][i]['emailId'];
-                var td13 = document.createElement('td');
-                td13.textContent = result['leaderboard'][i]['points'];
+                td12.textContent = result[i]['teamName'];
+                //var td13 = document.createElement('td');
+                //td13.textContent = result[i]['teamInfo']['teamPoints'];
                 tr1.append(td11);
                 tr1.append(td12);
-                tr1.append(td13);
+                //tr1.append(td13);
                 tbody.append(tr1);
             }
             
 
-            if(result['your_rank'] > 10)
-            {
+            // if(result['your_rank'] > 10)
+            // {
 
-                tr1 = document.createElement('tr');
-                tr1.className = "lighten-3 grey";
-                td11 = document.createElement('td');
-                td11.textContent = result['your_rank'];
-                td12 = document.createElement('td');
-                td12.textContent = "You";
-                td13 = document.createElement('td');
-                td13.textContent = result['your_points'];
-                tr1.append(td11);
-                tr1.append(td12);
-                tr1.append(td13);
-                tbody.append(tr1);
-            }
+            //     tr1 = document.createElement('tr');
+            //     tr1.className = "lighten-3 grey";
+            //     td11 = document.createElement('td');
+            //     td11.textContent = result['your_rank'];
+            //     td12 = document.createElement('td');
+            //     td12.textContent = "You";
+            //     td13 = document.createElement('td');
+            //     td13.textContent = result['your_points'];
+            //     tr1.append(td11);
+            //     tr1.append(td12);
+            //     tr1.append(td13);
+            //     tbody.append(tr1);
+            // }
             divtable.append(tbody);
             $("#leaderboard").append(divtable);
             $('#lbloader').hide();
@@ -467,18 +477,20 @@ function getNextLevel() {
                 }
             });
 } 
-function getState()
+function getState(e)
 {
     $.ajax
     ({ 
         url: 'myState.php',
+        data: 'level='+e.id,
         type: 'post',
         dataType: "json",
         success: function(result)
         {
             if(result['state']==1)
             {
-                window.location.href = "GamePlay.php";
+                window.location.href = "leveldisplay.php";     
+                           
             }
             else if(result['state']==0)
             {

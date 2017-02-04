@@ -8,7 +8,7 @@ if(!isset($_SESSION['user']))
 	$teamName = sanitizeParams($_POST['teamname']);
 	$teamPassword = sanitizeParams($_POST['teampassword']);
 
-	$url = '192.168.0.148:8080/web/api/joinTeam';
+	$url = 'http://dumeel.kurukshetra.org.in/web/api/joinTeam';
 	$params =  json_encode(array(
 		"emailId" => $emailId, 
 		"password" => $password,

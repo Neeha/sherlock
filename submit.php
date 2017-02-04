@@ -5,7 +5,7 @@ if(isset($_SESSION['user']))
 	$access_token = $_SESSION['user']['access_token'];
 	$answer = sanitizeParams($_POST['answer']);
 	
-	$url = '192.168.0.148:8080/player/api/answer';
+	$url = 'http://dumeel.kurukshetra.org.in/player/api/answer';
 	$params =  json_encode(array(
 		"access_token" => $access_token,
 		'answer' => $answer

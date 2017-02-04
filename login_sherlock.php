@@ -1,13 +1,14 @@
 <?php
 session_start();
-if(isset($_SESSION['user']))
+if(!isset($_SESSION['user']))
 {
-	$access_token = $_SESSION['user']['access_token'];
-	$key = sanitizeParams($_POST['key']);
-	$url = 'cms.cegtechforum.com/api/getClue';
+	$emailId = sanitizeParams($_POST['email']);
+	$password = sanitizeParams($_POST['password']);
+
+	$url = 'http://dumeel.kurukshetra.org.in/web/api/login';
 	$params =  json_encode(array(
-		"access_token" => $access_token,
-		'key' => $key
+		"emailId" => $emailId, 
+		"password" => $password
 		));
 	$ch = curl_init( $url );
 	curl_setopt( $ch, CURLOPT_POST, 1);
@@ -21,24 +22,25 @@ if(isset($_SESSION['user']))
 	if (curl_getinfo($ch, CURLINFO_HTTP_CODE) == 200)
 	{
 		$response = json_decode($response, true);
-
-		$response = array('code' => 1, 'clue' => $response['data']);
-		echo json_encode($response);		
-	}
-	else if(curl_getinfo($ch, CURLINFO_HTTP_CODE) == 401)
-	{
-		$response = array('code' => 2);
-		echo json_encode($response);		
+		$_SESSION['user'] = $response;
+		$_SESSION['user']['access_token'] = $response['access_token'];
+		$_SESSION['user']['level'] = $response['level'];
+		//$_SESSION['user'] = $response;
+			echo 1;
 	}
 	else
 	{
-		$response = array('code' => 3);
-		echo json_encode($response);
+		echo 0;
 	}
+	
+	//header("Location: index.php");
+	
+	
+	
 }
 else
 {
-	header("Location: index.php");
+	echo 4;
 }
 
 function sanitizeParams($param)
@@ -50,7 +52,8 @@ function sanitizeParams($param)
 	}
 	else
 	{
-		//handle else case
+		$_SESSION['login'] = "failure";
+			//header("Location: index.php");
 	}
 }
 

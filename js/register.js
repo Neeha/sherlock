@@ -120,6 +120,10 @@ function returnCheckRegister()
 	return (window.name && window.email && window.pass);
 
 }
+function returnPassword()
+{
+	return window.pass;
+}
 function returnEmail()
 {
 	

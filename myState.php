@@ -3,7 +3,8 @@ session_start();
 if(isset($_SESSION['user']))
 {
 	$access_token = $_SESSION['user']['access_token'];
-	
+	$level = sanitizeParams($_POST['level']);
+
 	$url = 'cms.cegtechforum.com/api/myState';
 	$params =  json_encode(array(
 		"access_token" => $access_token
@@ -19,6 +20,7 @@ if(isset($_SESSION['user']))
 	$response = curl_exec( $ch );
 	if (curl_getinfo($ch, CURLINFO_HTTP_CODE) == 200)
 	{
+		$user_state['currentUserUrls']=$response['currentUser']['currentUserUrls'];
 		echo $response;
 	}
 	else
