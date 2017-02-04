@@ -145,7 +145,7 @@
           </form>            
         </div>
         <center>
-              <button class="btn waves-effect waves-light" type="submit" onclick="window.location.href='/sherlock/loginSherlock.php'"; name="action" style="margin-bottom: 10px;">
+              <button class="btn waves-effect waves-light" type="submit" onclick="window.location.href='loginSherlock.php'"; name="action" style="margin-bottom: 10px;">
                 ALREADY HAVE A TEAM? LOGIN TO PLAY
               </button>
             </center>                     
