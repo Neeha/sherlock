@@ -22,8 +22,8 @@ if(isset($_SESSION['user']))
 	if (curl_getinfo($ch, CURLINFO_HTTP_CODE) == 200)
 	{
 		$response = json_decode($response, true);
-		$asked_state = $response['currentUser'];
-		$asked_state['currentUserUrls']=$response['currentUser']['currentUserUrls'];
+		$_SESSION['asked_state'] = $response['currentUser'];
+		//$asked_state['currentUserUrls']=$response['currentUser']['currentUserUrls'];
 		//echo $response;
 	}
 	else

@@ -478,7 +478,6 @@ function getState(e)
         url: 'myState.php',
         data: 'level='+e,
         type: 'post',
-        dataType: "json",
         success: function(result)
         {
             alert(result);
